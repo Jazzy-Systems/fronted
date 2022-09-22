@@ -1,0 +1,24 @@
+{
+    "people": [
+        {
+            "Nombre": "Eric",
+            "Apellido": "Cartman",
+            "edad": 10
+        },
+        {
+            "Nombre": "Stan",
+            "Apellido": "Marsh",
+            "edad": 10
+        },
+        {
+            "Nombre": "Kyle",
+            "Apellido": "Broflovski",
+            "edad": 9
+        },
+        {
+            "Nombre": "Kenny",
+            "Apellido": "Mkcormick",
+            "edad": 11
+        }
+    ]
+}

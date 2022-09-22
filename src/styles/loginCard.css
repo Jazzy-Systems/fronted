@@ -1,0 +1,20 @@
+.contenedor-form-login{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    background-color: #FFFFFF;
+    border-color: #FAF9FD;
+    border-radius: 20px;
+    padding-top: 40px;
+    padding-bottom: 35px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
+    
+}
+.form-login{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

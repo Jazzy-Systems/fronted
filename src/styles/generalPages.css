@@ -1,0 +1,10 @@
+.generalPage-container {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 1024px;
+    background: #03989E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
