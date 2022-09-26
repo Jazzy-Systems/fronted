@@ -24,6 +24,17 @@ const Register = (props) => {
                         <input type="password" className="form-control" id="floatingPassword" placeholder="Password"></input>
                         <label className = "text-input" htmlFor="floatingPassword">Contraseña</label>
                     </div>
+                    <div className="col-md-5">
+                        <label htmlFor="selector" className="form-label">Rol</label>
+                        <select className="form-select" id="rol-selector" required="" onChange={props.fSelect} selected = "Residente">
+                            <option></option>
+                            <option>Residente</option>
+                            <option>Vigilancia</option>
+                        </select>
+                        <div className="invalid-feedback">
+                            Seleccione un rol por favor.
+                        </div>
+                    </div>
                     <ButtonGreen id = "submit-button" text="Registrarme" type="Submit"/>
                     <p id= "text-extra">¿Ya tienes una cuenta?<br></br>
                         <a href = "" onClick = {props.fLogin}>Iniciar Sesión</a>

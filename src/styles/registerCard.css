@@ -1,7 +1,6 @@
 .contenedor-form-register{
     font-family: 'M PLUS Rounded 1c', sans-serif;
-    background-color: #FFFFFF;
-    border-color: #FAF9FD;
+    border: 5px solid #03989E;
     border-radius: 20px;
     padding-top: 40px;
     padding-bottom: 35px;
