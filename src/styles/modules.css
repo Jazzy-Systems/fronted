@@ -38,3 +38,33 @@
     font-size: 18px;
     font-weight: 600;
 }
+#navBar{
+    width: 100vw;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    border-radius: 10px;
+}
+#container-navBar{
+    display: flex;
+    align-content: space-between;
+    background-color: #FFFFFF;
+    border: 10px solid #03989E;
+}
+#navBar-logo{
+
+    margin-top: 15px;
+    margin-right: 30px;
+}
+#navBar-text{
+    font-weight: 600;
+}
+#navBar-content a{
+
+    color: #000000;
+    font-size: 24px;
+    font-weight: 600;
+    margin-right: 50px;
+}
+#navBar-content a:hover{
+
+    color: #828282;
+}
