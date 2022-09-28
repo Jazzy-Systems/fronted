@@ -9,7 +9,7 @@ const RegisterResident = (props) => {
     return(
         <div>
             <div className="form-floating" id="input-form">
-                <input type="tel" className="form-control" id="floatingCompany" placeholder="telefono" value={phone} onChange ={(e) => setPhone(e.target.value)}></input>
+                <input type="tel"  className="form-control" id="floatingCompany" placeholder="telefono" value={props.phone} onChange ={(e) => setPhone(e.target.value)}></input>
                 <label className = "form-label" htmlFor="floatingInput">Telefono</label>
             </div>
             <div className="form-floating" id="input-form">
@@ -21,6 +21,3 @@ const RegisterResident = (props) => {
 }
 
 export default RegisterResident;
-
-
-                    
