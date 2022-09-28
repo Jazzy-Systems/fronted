@@ -13,10 +13,15 @@ import TitleCard from './TitleCard';
 // }
 
 const Register = (props) => {
+    //Uso de estados para renderizar el formulario según el rol escogido
     const[rol, setRol] = useState("Seleccione un rol");
     const[residentContentVisible, setresidentContentVisible] = useState(false);
     const[vigilantContentVisible, setvigilantContentVisible] = useState(false);
-
+    //Uso de estados para capturar datos del formulario
+    const[name, setName] = useState("");
+    const[lastname, setLastName] = useState("");
+    const[email, setEmail] = useState("");
+    const[password, setPassword] = useState("");
     useEffect(()=>{
         rol === "Residente"
             ? setresidentContentVisible(true)
@@ -28,26 +33,32 @@ const Register = (props) => {
         setRol(e.target.value);
     }
    
+    
+    const enviarDatos = (e) =>{
+        e.preventDefault()
+        console.log('enviando datos...' + name+lastname+email+password+rol)
+    }
+
     return (
             <div className='contenedor-form-register'>
-                <form className='form-register'>
+                <form className='form-register' onSubmit = {enviarDatos}>
                     <img className="mb-4" src={require('../images/Logo.png')} alt="" width="120" height="120" />
                     <TitleCard text="Registro"/>
                     <div className="form-floating" id="input-form">
-                        <input type="name" className="form-control" id="floatingName" placeholder="name"></input>
-                        <label className = "text-input" htmlFor="floatingInput">Nombres</label>
+                        <input type="name" className="form-control" id="floatingName" placeholder="name" value={name} onChange ={(e) => setName(e.target.value)}></input>
+                        <label className = "form-label" htmlFor="floatingInput">Nombres</label>
                     </div>
                     <div className="form-floating" id="input-form">
-                        <input type="lastname" className="form-control" id="floatingLastNames" placeholder="lastname"></input>
-                        <label className = "text-input" htmlFor="floatingInput">Apellidos</label>
+                        <input type="lastname" className="form-control" id="floatingLastNames" placeholder="lastname" value={lastname} onChange ={(e) => setLastName(e.target.value)}></input>
+                        <label className = "form-label" htmlFor="floatingInput">Apellidos</label>
                     </div>
                     <div className="form-floating" id="input-form">
-                        <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com"></input>
-                        <label className = "text-input" htmlFor="floatingInput">Correo electronico</label>
+                        <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" value={email} onChange ={(e) => setEmail(e.target.value)}></input>
+                        <label className = "form-label" htmlFor="floatingInput">Correo electronico</label>
                     </div>
                     <div className="form-floating" id="input-form">
-                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password"></input>
-                        <label className = "text-input" htmlFor="floatingPassword">Contraseña</label>
+                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value={password} onChange ={(e) => setPassword(e.target.value)}></input>
+                        <label className = "form-label" htmlFor="floatingPassword">Contraseña</label>
                     </div>
                     <div className="col-md-5">
                         <label htmlFor="selector" className="form-label">Rol</label>
