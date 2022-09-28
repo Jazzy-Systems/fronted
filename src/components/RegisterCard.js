@@ -18,7 +18,7 @@ const Register = (props) => {
     const[residentContentVisible, setresidentContentVisible] = useState(false);
     const[vigilantContentVisible, setvigilantContentVisible] = useState(false);
     //Uso de estados para capturar datos del formulario
-    const[form,setForm] = useState({});
+    const[form,setForm] = useState({email:"",rol:""});
 
     const handleOnChange2 = (e) =>{
 
@@ -35,12 +35,6 @@ const Register = (props) => {
     const handleOnChange = (e) =>{
         setRol(e.target.value);
     }
-   
-    
-    const enviarDatos = (e) =>{
-        e.preDefault()
-        console.log('enviando datos...' + form.name+form.lastname+form.email+form.password+rol)
-    }
 
     const handleRegister = (e) => {
         const nombre = e.target[0].value;
@@ -48,13 +42,13 @@ const Register = (props) => {
         const mail = e.target[2].value;
         const contrasena = e.target[3].value;
         const rol = e.target[4].value;
-        
-        if(rol == "Residente"){
+
+        if(rol === "Residente"){
             const telefono = e.target[5].value;
             const apartamento = e.target[6].value;
             alert(nombre+","+apellidos+","+mail+","+contrasena+","+rol+","+telefono+","+apartamento)
         }
-        if(rol == "Vigilancia"){
+        if(rol === "Vigilancia"){
             const compania = e.target[5].value;
             const telefonoC = e.target[6].value;
             alert(nombre+","+apellidos+","+mail+","+contrasena+","+rol+","+compania+","+telefonoC)
@@ -68,25 +62,25 @@ const Register = (props) => {
                     <img className="mb-4" src={require('../images/Logo.png')} alt="" width="120" height="120" />
                     <TitleCard text="Registro"/>
                     <div className="form-floating" id="input-form">
-                        <input type="name" name = "nombre" className="form-control" id="floatingName" placeholder="name" value={form.name} onChange ={handleOnChange2}></input>
+                        <input type="name" name = "nombre" className="form-control" id="floatingName" placeholder="name" value={form.name} onChange ={handleOnChange2} required></input>
                         <label className = "form-label" htmlFor="floatingInput">Nombres</label>
                     </div>
                     <div className="form-floating" id="input-form">
-                        <input type="lastname" name = "apellidos" className="form-control" id="floatingLastNames" placeholder="lastname" value={form.lastname} onChange ={handleOnChange2}></input>
+                        <input type="lastname" name = "apellidos" className="form-control" id="floatingLastNames" placeholder="lastname" value={form.lastname} onChange ={handleOnChange2} required></input>
                         <label className = "form-label" htmlFor="floatingInput">Apellidos</label>
                     </div>
                     <div className="form-floating" id="input-form">
-                        <input type="email" name = "email" className="form-control" id="floatingEmail" placeholder="name@example.com" value={form.email} onChange ={handleOnChange2}></input>
+                        <input type="email" name = "email" className="form-control" id="floatingEmail" placeholder="name@example.com" value={form.email} onChange ={handleOnChange2} required></input>
                         <label className = "form-label" htmlFor="floatingInput">Correo electronico</label>
                     </div>
                     <div className="form-floating" id="input-form">
-                        <input type="password" name = "contrasena" className="form-control" id="floatingPassword" placeholder="Password" value={form.password} onChange ={handleOnChange2}></input>
+                        <input type="password" name = "contrasena" className="form-control" id="floatingPassword" placeholder="Password" value={form.password} onChange ={handleOnChange2} required></input>
                         <label className = "form-label" htmlFor="floatingPassword">Contraseña</label>
                     </div>
                     <div className="col-md-5">
-                        <label htmlFor="selector" className="form-label">Rol</label>
-                        <select className="form-select" id="rol-selector" required="" value={rol} onChange = {handleOnChange}>
-                            <option>Seleccione un rol</option>
+                        <label htmlFor="selector" className="form-label">Seleccione rol</label>
+                        <select required className="form-select" id="rol-selector" value={rol} onChange = {handleOnChange}>
+                            <option></option>
                             <option>Residente</option>
                             <option>Vigilancia</option>
                         </select>
