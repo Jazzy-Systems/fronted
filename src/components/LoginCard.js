@@ -10,19 +10,19 @@ const LoginCard = (props) => {
         password: ''
     });
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
         // store the states in the form data
+        e.preventDefault()
         const loginFormData = new FormData();
-        loginFormData.append("username", formValue.email)
+        loginFormData.append("email", formValue.email)
         loginFormData.append("password", formValue.password)
-
+        console.log(formValue.email)
         try {
             AuthService.login(formValue.email, formValue.password).then(
                 () => {
                     this.props.router.navigate("/profile");
                     window.location.reload();
                 })
-            // make axios post request
         } catch (error) {
             console.log(error)
         }
@@ -42,6 +42,7 @@ const LoginCard = (props) => {
                 <TitleCard text="Login" />
                 <div className="form-floating" id="input-form">
                     <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com"
+                        name="email"
                         value={formValue.email}
                         onChange={handleChange}>
                     </input>
@@ -49,6 +50,7 @@ const LoginCard = (props) => {
                 </div>
                 <div className="form-floating" id="input-form">
                     <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
+                        name="password"
                         value={formValue.password}
                         onChange={handleChange}></input>
                     <label className="text-input" htmlFor="floatingPassword">Contraseña</label>
