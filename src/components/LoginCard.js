@@ -20,7 +20,8 @@ const LoginCard = (props) => {
         try {
             AuthService.login(formValue.email, formValue.password).then(
                 () => {
-                    this.props.router.navigate("/profile");
+                    //this.props.router.navigate("/profile");
+                    props.fProfile();
                     window.location.reload();
                 })
         } catch (error) {
