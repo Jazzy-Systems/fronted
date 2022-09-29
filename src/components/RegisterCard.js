@@ -79,7 +79,7 @@ const Register = (props) => {
             email, password,isEnable,personDTO,roleName,apartmentDTO,companyName
           ).then(
             response => {
-              console.log(response)
+              alert("Se ha registrado satisfactoriamente")
             },
             error => {
               const resMessage =
