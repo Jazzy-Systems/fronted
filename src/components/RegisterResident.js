@@ -2,21 +2,24 @@ import React, { Component } from 'react';
 import {useEffect,useState } from 'react';
 import '../styles/modules.css';
 const RegisterResident = (props) => {
-    const[phone, setPhone] = useState("");
     const[apartment, setApartment] = useState("");
 
     
     return(
         <div>
-            <div className="form-floating" id="input-form">
-                <input type="tel"  className="form-control" id="floatingCompany" placeholder="telefono" value={props.phone} onChange ={(e) => setPhone(e.target.value)} required></input>
-                <label className = "form-label" htmlFor="floatingInput">Telefono</label>
-            </div>
-            <div className="form-floating" id="input-form">
-                <input type="name" className="form-control" id="floatingPassword" placeholder="Apartamento" value={apartment} onChange ={(e) => setApartment(e.target.value)} required></input>
-                <label className = "form-label" htmlFor="floatingPassword">Apartamento</label>
+            <div className="col-md-5">
+                <label htmlFor="selector" className="form-label">Torre-Apartamento</label>
+                <select required className="form-select" id="rol-selector" value={apartment} onChange ={(e) => setApartment(e.target.value)}>
+                    <option></option>
+                    <option>A-101</option>
+                    <option>A-102</option>
+                </select>
+                <div className="invalid-feedback">
+                    Seleccione Torre-Apartamento por favor.
+                </div>
             </div>
         </div>
+        
     )
 }
 

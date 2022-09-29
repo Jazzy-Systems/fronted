@@ -10,7 +10,7 @@ class RecoveredCard extends Component {
                 <form className='form-recovered'>
                     <TitleCard text="Recuperar Contraseña"/>
                     <div className="form-floating" id="input-form">
-                        <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com"></input>
+                        <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" required></input>
                         <label className = "text-input" htmlFor="floatingInput">Correo electronico</label>
                     </div>
                     <ButtonGreen id = "submit-button" text="Enviar Link" type="Submit"/>

@@ -16,7 +16,6 @@ const LoginCard = (props) => {
         const loginFormData = new FormData();
         loginFormData.append("email", formValue.email)
         loginFormData.append("password", formValue.password)
-        console.log(formValue.email)
         try {
             AuthService.login(formValue.email, formValue.password).then(
                 () => {
@@ -25,7 +24,11 @@ const LoginCard = (props) => {
                     window.location.reload();
                 })
         } catch (error) {
-            console.log(error)
+            console.log("Pailas");
+            alert("Las credenciales son incorrectas o el usuario no existe")
+            formValue.email = ""; 
+            formValue.password = ";"
+            
         }
     }
 
@@ -45,15 +48,14 @@ const LoginCard = (props) => {
                     <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com"
                         name="email"
                         value={formValue.email}
-                        onChange={handleChange}>
-                    </input>
+                        onChange={handleChange} required></input>
                     <label className="text-input" htmlFor="floatingInput">Correo electronico</label>
                 </div>
                 <div className="form-floating" id="input-form">
                     <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
                         name="password"
                         value={formValue.password}
-                        onChange={handleChange}></input>
+                        onChange={handleChange} required></input>
                     <label className="text-input" htmlFor="floatingPassword">Contraseña</label>
                 </div>
                 <ButtonGreen id="submit-button" text="Entrar" type="Submit" />
