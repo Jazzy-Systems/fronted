@@ -38,7 +38,6 @@ const Register = (props) => {
     }
 
     const handleRegister2 = (e) => {
-        e.preventDefault();
         let email = e.target[2].value;
         let password = e.target[5].value;
         let roleName = e.target[6].value;
