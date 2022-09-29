@@ -14,11 +14,15 @@ function LoginPage() {
 
   const goRecovered = () => {
     navigate('/recovered-password');
-};
+  };
+
+  const goProfile = () => {
+    navigate('/profile');
+  };  
 
     return (
       <div className="generalPage-container">
-        <Login fRecovered = {goRecovered} fRegister = {goRegister}/>
+        <Login fRecovered = {goRecovered} fRegister = {goRegister} fProfile = {goProfile}/>
       </div>
     );
   }
