@@ -44,9 +44,10 @@ input{
     font-weight: 600;
 }
 #navBar{
-    width: 100vw;
+    width: 98vw;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     border-radius: 10px;
+    margin: 0px;
 }
 #container-navBar{
     display: flex;
@@ -78,21 +79,11 @@ input{
     height: 600px;
     font-family: 'M PLUS Rounded 1c', sans-serif;
 }
-#cardProfile{
-
-    height: 500px;
-}
 #cardHeaderProfile{
 
     background-color: #03989E;
 }
-#cardBodyProfile{
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 #botonCardProfile{
 
     color: #000000;
@@ -102,4 +93,12 @@ input{
 #botonCardProfile:hover{
 
     background-color: #03989E;
+}
+.profilePage-body{
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    /* justify-content: space-around; Como debe dejarse? */
 }
