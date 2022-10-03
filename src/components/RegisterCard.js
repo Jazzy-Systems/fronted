@@ -38,13 +38,11 @@ const Register = (props) => {
     }
 
     const handleRegister2 = (e) => {
-        e.preventDefault();
         let email = e.target[2].value;
         let password = e.target[5].value;
         let roleName = e.target[6].value;
         let companyName = "";
         let isEnable = true;
-        //nombre,apellidos,email,telefono,cedula,contraseña,rol,apartamento,empresa
         let personDTO ={
             firstName: e.target[0].value,
             lastName: e.target[1].value,
@@ -55,17 +53,17 @@ const Register = (props) => {
             buildingName : e.target[7].value,
             number: e.target[7].value
         }
-        console.log(e.target[7].value.split('-')[0])
-        console.log(personDTO.firstName+","+personDTO.lastName+","+email+","+personDTO.phone+","+personDTO.dni
-        +","+password+","+roleName+","+apartmentDTO.buildingName+","+apartmentDTO.number+","+companyName)
+        //console.log(e.target[7].value.split('-')[0])
+        //console.log(personDTO.firstName+","+personDTO.lastName+","+email+","+personDTO.phone+","+personDTO.dni
+        //+","+password+","+roleName+","+apartmentDTO.buildingName+","+apartmentDTO.number+","+companyName)
         if(roleName === "ROLE_RESIDENT"){
             apartmentDTO ={
                 buildingName : e.target[7].value.split('-')[0],
                 number: e.target[7].value.split('-')[1]
             }
             companyName = ""
-            alert(personDTO.firstName+","+personDTO.lastName+","+email+","+personDTO.phone+","+personDTO.dni
-            +","+password+","+roleName+","+apartmentDTO.buildingName+","+apartmentDTO.number+","+companyName)
+            //alert(personDTO.firstName+","+personDTO.lastName+","+email+","+personDTO.phone+","+personDTO.dni
+            //+","+password+","+roleName+","+apartmentDTO.buildingName+","+apartmentDTO.number+","+companyName)
         }
         if(roleName === "ROLE_GUARD"){
             apartmentDTO ={
@@ -73,14 +71,14 @@ const Register = (props) => {
                 number: ""
             }
             companyName = e.target[7].value;
-            alert(personDTO.firstName+","+personDTO.lastName+","+email+","+personDTO.phone+","+personDTO.dni
-            +","+password+","+roleName+","+apartmentDTO.buildingName+","+apartmentDTO.number+","+companyName)
+            //alert(personDTO.firstName+","+personDTO.lastName+","+email+","+personDTO.phone+","+personDTO.dni
+            //+","+password+","+roleName+","+apartmentDTO.buildingName+","+apartmentDTO.number+","+companyName)
         }
         AuthService.register(
             email, password,isEnable,personDTO,roleName,apartmentDTO,companyName
           ).then(
             response => {
-              console.log(response)
+              alert("Se ha registrado satisfactoriamente")
             },
             error => {
               const resMessage =

@@ -1,0 +1,35 @@
+#container-cardRelease{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    display: inline-block;
+    border-radius: 20px;
+    padding-top: 40px;
+    padding-bottom: 35px;
+    padding-left: 100px;
+    padding-right: 100px;
+    text-align: justify;
+    
+}
+#cardRelease{
+    border: 3px solid #eceef1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
+#p-contentCard{
+    height: 450px;
+    width: 450px;
+}
+#p-contentCard h3{
+    color: #03989E;
+    font-size: 28px;
+    font-weight: 600;
+}
+#p-contentCard-text{
+    margin-top: 40px;
+    margin-bottom: 50px;
+    font-size: 18px;
+}
+#cardIcon{
+
+    margin: 160px 15px 0px 10px;
+}
