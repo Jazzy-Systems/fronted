@@ -12,13 +12,13 @@ const NavBarGeneral = (props) => {
                 <div id = "navBar-content">
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Comunicados</a>
+                            <a className="nav-link" href="#">{props.itemOne}</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Paqueteria</a>
+                            <a className="nav-link" href="#">{props.itemTwo}</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">PQRS</a>
+                            <a className="nav-link" href="#">{props.itemThree}</a>
                         </li>
                     </ul>
                 </div>
