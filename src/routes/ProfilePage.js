@@ -9,7 +9,6 @@ import AuthService from "../services/auth.service";
 function ProfilePage() {
 
   const currentRoleNavBar = () =>{
-
     if(AuthService.getCurrentUser().roles[0]=== 'ROLE_RESIDENT'){
       return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Paqueteria' itemThree = 'PQRS'/> 
     }else if(AuthService.getCurrentUser().roles[0]=== 'ROLE_GUARD'){

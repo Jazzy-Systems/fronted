@@ -38,6 +38,7 @@ const Register = (props) => {
     }
 
     const handleRegister2 = (e) => {
+        e.preventDefault();
         let email = e.target[2].value;
         let password = e.target[5].value;
         let roleName = e.target[6].value;
@@ -78,7 +79,8 @@ const Register = (props) => {
             email, password,isEnable,personDTO,roleName,apartmentDTO,companyName
           ).then(
             response => {
-              alert("Se ha registrado satisfactoriamente")
+              alert("Se ha registrado satisfactoriamente, dirijase a login e inicie sesion.")
+              window.location.reload(true);
             },
             error => {
               const resMessage =
@@ -87,7 +89,7 @@ const Register = (props) => {
                   error.response.data.message) ||
                 error.message ||
                 error.toString();
-      
+                alert("Ha ocurrido un error,por favor revise los datos ingresados")
               console.log(resMessage)
             }
           );
