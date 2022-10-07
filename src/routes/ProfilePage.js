@@ -13,7 +13,7 @@ function ProfilePage() {
     if(AuthService.getCurrentUser().roles[0]=== 'ROLE_RESIDENT'){
       return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Paqueteria' itemThree = 'PQRS'/> 
     }else if(AuthService.getCurrentUser().roles[0]=== 'ROLE_GUARD'){
-      return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Paqueteria' itemThree = 'PQRS'/>
+      return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Paqueteria'/>
     }else if(AuthService.getCurrentUser().roles[0]=== 'ROLE_ADMIN'){
       return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Gestion Usuarios' itemThree = 'PQRS'/>
     }
