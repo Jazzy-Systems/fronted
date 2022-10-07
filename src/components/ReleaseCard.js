@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/releaseCard.css';
 import aviso from '../images/megaphone.svg'
+import ButtonGreen from './ButtonGreen';
 
 function ReleaseCard() {
 
@@ -15,7 +16,15 @@ function ReleaseCard() {
                     <p className="card-text" id = "p-contentCard-text">El dia 8 de septiembre del 2022, se hara una reparación por parte de la empresa
                      PLOMERIA S.A.S a las tuberias del piso 1 por daños causados por un fuerte golpe a una tuberia, el servicio de 
                      acueduto sera cortado entre 2:00 pm - 4: 00 pm, lamentamos los inconvenientes. </p>
-                    <a href="#" className="stretched-link">Leer mas...</a>
+                    <div className='more-card'>
+                        <div>
+                            <a href="#" className="stretched-link">Leer mas...</a>
+                        </div>
+                        <div>
+                            <ButtonGreen id = "edit-card" text="Editar" type="button"/>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div className="col-auto d-none d-lg-block">
                     <img className="mb-4" src={aviso} alt="" width="150" height="150" id = "cardIcon" />
@@ -26,3 +35,8 @@ function ReleaseCard() {
 }
 
 export default ReleaseCard;
+
+// creation_date
+// description
+// communique_type
+// communique_title

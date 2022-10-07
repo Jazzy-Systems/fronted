@@ -103,3 +103,22 @@ input{
     margin-left: 20px;
     /* justify-content: space-around; Como debe dejarse? */
 }
+#edit-card{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    border-color: #2DC4B5;
+    width: 150px;
+    height: 45px;
+    background-color: #2DC4B5;
+    color:black;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 2px 16px 2px 16px;
+}
+.more-card{
+
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
