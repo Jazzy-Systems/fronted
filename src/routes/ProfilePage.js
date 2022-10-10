@@ -5,17 +5,36 @@ import NavBarGeneral from '../components/NavBarGeneral';
 import { useNavigate } from 'react-router-dom';
 import ReleaseCard from '../components/ReleaseCard';
 import AuthService from "../services/auth.service";
+import {useEffect,useState } from 'react';
 
 function ProfilePage() {
 
-  const currentRoleNavBar = () =>{
-    if(AuthService.getCurrentUser().roles[0]=== 'ROLE_RESIDENT'){
-      return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Paqueteria' itemThree = 'PQRS'/> 
-    }else if(AuthService.getCurrentUser().roles[0]=== 'ROLE_GUARD'){
-      return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Paqueteria'/>
-    }else if(AuthService.getCurrentUser().roles[0]=== 'ROLE_ADMIN'){
-      return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Gestion Usuarios' itemThree = 'PQRS'/>
+  let navigate = useNavigate();
+  const[pageStatus, setpageStatus] = useState(false);
+
+  const handleOnChange = (e) =>{
+
+    setpageStatus(AuthService.getCurrentUser())
+  }
+
+  useEffect(() => {
+    if (AuthService.getCurrentUser() == null){
+      //alert("No hay credenciales actuales o usted no ha iniciado sesión.")
+      navigate("/login")   
     }
+  },[])
+
+  const currentRoleNavBar = () =>{
+    if(!(AuthService.getCurrentUser() == null)){
+      if(AuthService.getCurrentUser().role=== 'ROLE_RESIDENT'){
+        return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Paqueteria' itemThree = 'PQRS' itemFour = {AuthService.logout} /> 
+      }else if(AuthService.getCurrentUser().role=== 'ROLE_GUARD'){
+        return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Paqueteria' itemFour = {AuthService.logout}/>
+      }else if(AuthService.getCurrentUser().role=== 'ROLE_ADMIN'){
+        return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Gestion Usuarios' itemThree = 'PQRS' itemFour = {AuthService.logout}/>
+      }
+    }
+    
   }
 
   return (
@@ -29,7 +48,6 @@ function ProfilePage() {
         <ReleaseCard />
         <ReleaseCard />
       </div>
-
     </div>
   );
 }

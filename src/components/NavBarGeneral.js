@@ -20,6 +20,9 @@ const NavBarGeneral = (props) => {
                         <li className="nav-item">
                             <a className="nav-link" href="#">{props.itemThree}</a>
                         </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="http://localhost:3000/login" onClick = {props.itemFour}>Log Out</a>
+                        </li>
                     </ul>
                 </div>
             </div>
