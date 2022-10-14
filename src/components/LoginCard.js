@@ -26,9 +26,9 @@ const LoginCard = (props) => {
         } catch (error) {
             console.log("Pailas");
             alert("Las credenciales son incorrectas o el usuario no existe")
-            formValue.email = ""; 
-            formValue.password = ";"
-            
+            formValue.email = "";
+            formValue.password = "";
+
         }
     }
 
