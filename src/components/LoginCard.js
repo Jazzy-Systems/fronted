@@ -16,20 +16,22 @@ const LoginCard = (props) => {
         const loginFormData = new FormData();
         loginFormData.append("email", formValue.email)
         loginFormData.append("password", formValue.password)
-        try {
-            AuthService.login(formValue.email, formValue.password).then(
-                () => {
-                    //this.props.router.navigate("/profile");
-                    props.fProfile();
-                    window.location.reload();
-                })
-        } catch (error) {
-            console.log("Pailas");
-            alert("Las credenciales son incorrectas o el usuario no existe")
-            formValue.email = ""; 
-            formValue.password = ";"
-            
-        }
+        
+        AuthService.login(formValue.email, formValue.password).then(
+            () => {
+                props.fProfile();
+                window.location.reload();
+            },
+            error => {
+              const resMessage =
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.message) ||
+                error.message ||
+                error.toString();
+                alert("Las credenciales son incorrectas o el usuario no existe.")    
+            }
+          );
     }
 
     const handleChange = (event) => {

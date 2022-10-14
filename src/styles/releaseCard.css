@@ -9,6 +9,10 @@
     text-align: justify;
     
 }
+#p-contentCard:hover{
+
+    cursor: default;
+}
 #cardRelease{
     border: 3px solid #eceef1;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

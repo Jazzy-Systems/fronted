@@ -1,3 +1,4 @@
+import AuthService from "./services/auth.service";
 import { render } from 'react-dom';
 import MainPage from './routes/MainPage.js';
 import RegisterPage from './routes/RegisterPage.js';
