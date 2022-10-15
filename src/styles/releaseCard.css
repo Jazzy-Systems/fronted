@@ -3,7 +3,6 @@
     display: inline-block;
     border-radius: 20px;
     padding-top: 40px;
-    padding-bottom: 35px;
     padding-left: 100px;
     padding-right: 100px;
     text-align: justify;
@@ -30,7 +29,7 @@
 }
 #p-contentCard-text{
     margin-top: 40px;
-    margin-bottom: 50px;
+    margin-bottom: auto;
     font-size: 18px;
 }
 #cardIcon{

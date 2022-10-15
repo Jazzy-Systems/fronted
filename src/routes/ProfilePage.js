@@ -7,13 +7,35 @@ import ReleaseCard from '../components/ReleaseCard';
 import AuthService from "../services/auth.service";
 import {useEffect,useState } from 'react';
 import CreateCommunique from '../components/CreateCommunique';
-import communiqueService from '../services/communique-service';
+import authHeader from '../services/auth-header';
 
 function ProfilePage() {
 
   let location = useLocation();
   let navigate = useNavigate();
   const[pageStatus, setpageStatus] = useState(false);
+
+  const [communiques, setCommuniques] = useState(null);
+
+  useEffect(() => {
+    const requestOptions = {
+      method: 'GET',
+      headers: authHeader()
+    }
+    const dataFetch = async () => {
+      const data = await (
+        await fetch(
+          "http://localhost:8081/api/v1/communique/", requestOptions
+        )
+      ).json();
+      console.log(data);
+      // set state when the data received
+      setCommuniques(data);
+    };
+
+    dataFetch();
+  }, [])
+
 
   const handleOnChange = (e) =>{
 
@@ -40,30 +62,20 @@ function ProfilePage() {
     
   }
   const contentPage = () =>{
-
-    console.log(location.pathname)
     
     if(location.pathname === "/profile"){
-      const dataFetch = async () => {
-        const data = await (
-          await fetch(
-            "http://localhost:8081/api/v1/communique"
-          )
-        ).json();
-
-      console.log(dataFetch)
-      // fetch(communiqueService.getAll()).then((response)=>{
-      //   console.log(response.json())
-      // })
-        
-      // return <div className="profilePage-body">
-      //           {communiqueService.getAll().map(communique) =>(
-      //             <ReleaseCard/>
-      //           )}
-      //        </div>
+      if (communiques) {
+        return (
+            <div className="profilePage-body">
+              {communiques.map((elem) => {
+                return (
+                    <ReleaseCard communique={elem} />
+                );
+              })}
+            </div>
+        )
+      }
     }
-    dataFetch()
-  }
     else if(location.pathname === "/profile/createCommunique" && AuthService.getCurrentUser().role == 'ROLE_ADMIN'){
       return <Routes>
               <Route path="createCommunique" element = {<CreateCommunique/>}/>
