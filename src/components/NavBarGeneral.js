@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import '../styles/modules.css';
 const NavBarGeneral = (props) => {
+
+    const navBarRoutes= ()=>{
+        if(props.itemTwo === "Paqueteria"){
+            return "http://localhost:3000/profile"
+        }else if(props.itemTwo === "Gestion Usuarios"){
+            return "http://localhost:3000/profile"
+        }
+    }
+
     return (
         <nav className="navbar navbar-expand navbar-dark" id ="navBar" aria-label="Second navbar example">
             <div className="container-fluid" id = "container-navBar">
@@ -12,13 +21,13 @@ const NavBarGeneral = (props) => {
                 <div id = "navBar-content">
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">{props.itemOne}</a>
+                            <a className="nav-link" href="http://localhost:3000/profile">{props.itemOne}</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">{props.itemTwo}</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">{props.itemThree}</a>
+                            <a className="nav-link" href="http://localhost:3000/profile">{props.itemThree}</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="http://localhost:3000/login" onClick = {props.itemFour}>Log Out</a>
