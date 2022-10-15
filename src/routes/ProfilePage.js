@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../styles/generalPages.css';
 import NavBarGeneral from '../components/NavBarGeneral';
-import { useNavigate } from 'react-router-dom';
+import { Routes,Route,useNavigate, useLocation,Switch } from 'react-router-dom';
 import ReleaseCard from '../components/ReleaseCard';
 import AuthService from "../services/auth.service";
 import {useEffect,useState } from 'react';
+import CreateCommunique from '../components/CreateCommunique';
+import communiqueService from '../services/communique-service';
 
 function ProfilePage() {
 
+  let location = useLocation();
   let navigate = useNavigate();
   const[pageStatus, setpageStatus] = useState(false);
 
@@ -36,17 +39,43 @@ function ProfilePage() {
     }
     
   }
+  const contentPage = () =>{
+
+    console.log(location.pathname)
+    
+    if(location.pathname === "/profile"){
+      const dataFetch = async () => {
+        const data = await (
+          await fetch(
+            "http://localhost:8081/api/v1/communique"
+          )
+        ).json();
+
+      console.log(dataFetch)
+      // fetch(communiqueService.getAll()).then((response)=>{
+      //   console.log(response.json())
+      // })
+        
+      // return <div className="profilePage-body">
+      //           {communiqueService.getAll().map(communique) =>(
+      //             <ReleaseCard/>
+      //           )}
+      //        </div>
+    }
+    dataFetch()
+  }
+    else if(location.pathname === "/profile/createCommunique" && AuthService.getCurrentUser().role == 'ROLE_ADMIN'){
+      return <Routes>
+              <Route path="createCommunique" element = {<CreateCommunique/>}/>
+             </Routes>
+    }
+  }
 
   return (
     <div className="profilePage-container">
       {currentRoleNavBar()}
       <div className="profilePage-body">
-        <ReleaseCard />
-        <ReleaseCard />
-        <ReleaseCard />
-        <ReleaseCard />
-        <ReleaseCard />
-        <ReleaseCard />
+      {contentPage()}     
       </div>
     </div>
   );
