@@ -6,7 +6,7 @@ const NavBarGeneral = (props) => {
         if(props.itemTwo === "Paqueteria"){
             return "http://localhost:3000/profile"
         }else if(props.itemTwo === "Gestion Usuarios"){
-            return "http://localhost:3000/profile"
+            return "http://localhost:3000/register"
         }
     }
 
@@ -24,7 +24,7 @@ const NavBarGeneral = (props) => {
                             <a className="nav-link" href="http://localhost:3000/profile">{props.itemOne}</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">{props.itemTwo}</a>
+                            <a className="nav-link" href={navBarRoutes()}>{props.itemTwo}</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="http://localhost:3000/profile">{props.itemThree}</a>
