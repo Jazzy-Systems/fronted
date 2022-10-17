@@ -9,7 +9,7 @@ function LoginPage() {
   let navigate = useNavigate();
 
   const goRegister = () => {
-    navigate('/register');
+    navigate('/registerUser');
   };
 
   const goRecovered = () => {
