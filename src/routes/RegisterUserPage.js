@@ -1,26 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../styles/generalPages.css';
-import Home from '../components/HomeCard';
+import RegisterUser from '../components/RegisterCardUser';
 import { useNavigate } from 'react-router-dom';
 
-function MainPage() {
+function RegisterPage() {
 
   let navigate = useNavigate();
 
   const goLoginUser = () => {
       navigate('/login');
   };
-
-  const goRegister = () => {
-      navigate('/registerUser');
-  };
-
+  
     return (
       <div className="generalPage-container">
-        <Home fLogin = {goLoginUser} fRegister = {goRegister}/>
+        <RegisterUser fLogin = {goLoginUser}/>
       </div>
     );
   }
   
-  export default MainPage;
+  export default RegisterPage;

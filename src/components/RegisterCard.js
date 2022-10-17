@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {useNavigate } from 'react-router-dom';
 import {useEffect,useState } from 'react';
 import '../styles/registerCard.css';
 import ButtonGreen from './ButtonGreen';
@@ -7,13 +8,9 @@ import RegisterVigilant from './RegisterVigilant';
 import AuthService from '../services/auth.service';
 import TitleCard from './TitleCard';
 
-// const getRol = (props) => {
-//     const idValue = document.getElementById('rol-selector').value;
-//     props.rol = idValue;
-//     return idValue;
-// }
-
 const Register = (props) => {
+    let navigate = useNavigate();
+    const[pageStatus, setpageStatus] = useState(false);
     //Uso de estados para renderizar el formulario según el rol escogido
     const[rolNamed, setRol] = useState("Seleccione un rol");
     const[residentContentVisible, setresidentContentVisible] = useState(false);
@@ -37,11 +34,22 @@ const Register = (props) => {
         setRol(e.target.value);
     }
 
+    const handleOnChange3 = (e) =>{
+
+        setpageStatus(AuthService.getCurrentUser())
+      }
+    
+      useEffect(() => {
+        if (AuthService.getCurrentUser() == null || !(AuthService.getCurrentUser().role=== 'ROLE_ADMIN')){
+          //alert("No hay credenciales actuales o usted no ha iniciado sesión.")
+          navigate("/profile")   
+        }
+      },[])
+
     const handleRegister2 = (e) => {
         e.preventDefault();
         let email = e.target[2].value;
-        let password = e.target[5].value;
-        let roleName = e.target[6].value;
+        let roleName = e.target[5].value;
         let companyName = "";
         let isEnable = true;
         let personDTO ={
@@ -51,32 +59,26 @@ const Register = (props) => {
             phone: e.target[3].value
         }
         let apartmentDTO ={
-            buildingName : e.target[7].value,
-            number: e.target[7].value
+            buildingName : e.target[6].value,
+            number: e.target[6].value
         }
-        //console.log(e.target[7].value.split('-')[0])
-        //console.log(personDTO.firstName+","+personDTO.lastName+","+email+","+personDTO.phone+","+personDTO.dni
-        //+","+password+","+roleName+","+apartmentDTO.buildingName+","+apartmentDTO.number+","+companyName)
         if(roleName === "ROLE_RESIDENT"){
             apartmentDTO ={
-                buildingName : e.target[7].value.split('-')[0],
-                number: e.target[7].value.split('-')[1]
+                buildingName : e.target[6].value.split('-')[0],
+                number: e.target[6].value.split('-')[1]
             }
             companyName = ""
-            //alert(personDTO.firstName+","+personDTO.lastName+","+email+","+personDTO.phone+","+personDTO.dni
-            //+","+password+","+roleName+","+apartmentDTO.buildingName+","+apartmentDTO.number+","+companyName)
         }
         if(roleName === "ROLE_GUARD"){
             apartmentDTO ={
                 buildingName : "",
                 number: ""
             }
-            companyName = e.target[7].value;
-            //alert(personDTO.firstName+","+personDTO.lastName+","+email+","+personDTO.phone+","+personDTO.dni
-            //+","+password+","+roleName+","+apartmentDTO.buildingName+","+apartmentDTO.number+","+companyName)
+            companyName = e.target[6].value;
         }
+
         AuthService.register(
-            email, password,isEnable,personDTO,roleName,apartmentDTO,companyName
+            email,isEnable,personDTO,roleName,apartmentDTO,companyName
           ).then(
             response => {
               alert("Se ha registrado satisfactoriamente, dirijase a login e inicie sesion.")
@@ -94,6 +96,8 @@ const Register = (props) => {
             }
           );
     }
+    
+
     return (
             <div className='contenedor-form-register'>
                 <form className='form-register' onSubmit = {handleRegister2}>
@@ -118,10 +122,6 @@ const Register = (props) => {
                     <div className="form-floating" id="input-form">
                         <input type="number" name = "cedula" className="form-control" id="floatingCedula" placeholder="Password" value={form.cedula} onChange ={handleOnChange2} required></input>
                         <label className = "form-label" htmlFor="floatingCedula">Cedula</label>
-                    </div>
-                    <div className="form-floating" id="input-form">
-                        <input type="password" name = "contrasena" className="form-control" id="floatingPassword" placeholder="Password" value={form.password} onChange ={handleOnChange2} required></input>
-                        <label className = "form-label" htmlFor="floatingPassword">Contraseña</label>
                     </div>
                     <div className="col-md-5">
                         <label htmlFor="selector" className="form-label">Seleccione rol</label>
