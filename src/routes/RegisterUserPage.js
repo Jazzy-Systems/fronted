@@ -4,7 +4,7 @@ import '../styles/generalPages.css';
 import RegisterUser from '../components/RegisterCardUser';
 import { useNavigate } from 'react-router-dom';
 
-function RegisterPage() {
+function RegisterUserPage() {
 
   let navigate = useNavigate();
 
@@ -13,10 +13,10 @@ function RegisterPage() {
   };
   
     return (
-      <div className="generalPage-container">
+      <div className="generalPage-container"> 
         <RegisterUser fLogin = {goLoginUser}/>
-      </div>
+        </div>
     );
   }
   
-  export default RegisterPage;
+  export default RegisterUserPage;
