@@ -1,17 +1,52 @@
 import React, { Component } from 'react';
-import {useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/modules.css';
-const RegisterVigilant = (props) => {
-    const[nameCompany, setNameCompany] = useState("");
+import authHeader from '../services/auth-header';
 
-    return(
-        <div>
-            <div className="form-floating" id="input-form">
-                <input type="name" className="form-control" id="floatingEmail" placeholder="nombre-compañia" value={nameCompany} onChange ={(e) => setNameCompany(e.target.value)} required></input>
-                <label className = "form-label" htmlFor="floatingInput">Nombre Compañia</label>
+const RegisterVigilant = (props) => {
+    const [nameCompany, setNameCompany] = useState("");
+
+    const [companies, setCompanies] = useState(null);
+
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: authHeader()
+        }
+        const dataFetch = async () => {
+            const data = await (
+                await fetch(
+                    "http://localhost:8081/api/v1/company/", requestOptions
+                )
+            ).json();
+            console.log(data);
+            setCompanies(data);
+        };
+        dataFetch();
+    }, []);
+    if (companies) {
+        return (
+            <div>
+                <label htmlFor="selector" className="form-label">Empresa de seguridad</label>
+                <select required className="form-select" id="rol-selector" value={nameCompany} onChange={(e) => setNameCompany(e.target.value)}>
+                    <option></option>
+                    {companies.map((company) => (
+                        <option value={company.companyName}>
+                            {company.companyName}
+                        </option>
+                    ))}
+                </select>
+                <div className="invalid-feedback">
+                    Seleccione la empresa de seguridad por favor.
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
+    else {
+        return (
+            <div>Cargando datos</div>
+        )
+    }
 }
 
 export default RegisterVigilant;
