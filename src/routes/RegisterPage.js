@@ -21,7 +21,7 @@ function RegisterPage() {
       }else if(AuthService.getCurrentUser().role=== 'ROLE_GUARD'){
         return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Paqueteria' itemFour = {AuthService.logout}/>
       }else if(AuthService.getCurrentUser().role=== 'ROLE_ADMIN'){
-        return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Gestion Usuarios' itemThree = 'PQRS' itemFour = {AuthService.logout}/>
+        return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Gestion Usuarios' itemThree = 'Crear Comunicados' itemFour = {AuthService.logout}/>
       }
     }
   }

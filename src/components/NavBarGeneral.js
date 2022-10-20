@@ -9,6 +9,13 @@ const NavBarGeneral = (props) => {
             return "http://localhost:3000/register"
         }
     }
+    const navBarRoutes2= ()=>{
+        if(props.itemThree === "PQRS"){
+            return "http://localhost:3000/profile"
+        }else if(props.itemThree === "Crear Comunicados"){
+            return "http://localhost:3000/profile/createCommunique"
+        }
+    }
 
     return (
         <nav className="navbar navbar-expand navbar-dark" id ="navBar" aria-label="Second navbar example">
@@ -27,7 +34,7 @@ const NavBarGeneral = (props) => {
                             <a className="nav-link" href={navBarRoutes()}>{props.itemTwo}</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="http://localhost:3000/profile">{props.itemThree}</a>
+                            <a className="nav-link" href={navBarRoutes2()}>{props.itemThree}</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="http://localhost:3000/login" onClick = {props.itemFour}>Log Out</a>
