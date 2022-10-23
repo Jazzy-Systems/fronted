@@ -2,18 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../styles/generalPages.css';
 import NavBarGeneral from '../components/NavBarGeneral';
-import { Routes,Route,useNavigate, useLocation,Switch } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation, Switch } from 'react-router-dom';
 import ReleaseCard from '../components/ReleaseCard';
 import AuthService from "../services/auth.service";
-import {useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import CreateCommunique from '../components/CreateCommunique';
 import authHeader from '../services/auth-header';
+import EditPerson from '../components/EditPerson';
 
 function ProfilePage() {
 
   let location = useLocation();
   let navigate = useNavigate();
-  const[pageStatus, setpageStatus] = useState(false);
+  const [pageStatus, setpageStatus] = useState(false);
 
   const [communiques, setCommuniques] = useState(null);
 
@@ -37,49 +38,54 @@ function ProfilePage() {
   }, [])
 
 
-  const handleOnChange = (e) =>{
+  const handleOnChange = (e) => {
 
     setpageStatus(AuthService.getCurrentUser())
   }
 
   useEffect(() => {
-    if (AuthService.getCurrentUser() == null){
+    if (AuthService.getCurrentUser() == null) {
       //alert("No hay credenciales actuales o usted no ha iniciado sesión.")
-      navigate("/login")   
+      navigate("/login")
     }
-  },[])
+  }, [])
 
-  const currentRoleNavBar = () =>{
-    if(!(AuthService.getCurrentUser() == null)){
-      if(AuthService.getCurrentUser().role=== 'ROLE_RESIDENT'){
-        return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Paqueteria' itemThree = 'PQRS' itemFour = {AuthService.logout} /> 
-      }else if(AuthService.getCurrentUser().role=== 'ROLE_GUARD'){
-        return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Paqueteria' itemFour = {AuthService.logout}/>
-      }else if(AuthService.getCurrentUser().role=== 'ROLE_ADMIN'){
-        return <NavBarGeneral itemOne = 'Comunicados' itemTwo = 'Gestion Usuarios' itemThree = 'Crear Comunicados' itemFour = {AuthService.logout}/>
+  const currentRoleNavBar = () => {
+    if (!(AuthService.getCurrentUser() == null)) {
+      if (AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
+        return <NavBarGeneral itemOne='Comunicados' itemTwo='Paqueteria' itemThree='PQRS' itemFour={AuthService.logout} />
+      } else if (AuthService.getCurrentUser().role === 'ROLE_GUARD') {
+        return <NavBarGeneral itemOne='Comunicados' itemTwo='Paqueteria' itemFour={AuthService.logout} />
+      } else if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
+        return <NavBarGeneral itemOne='Comunicados' itemTwo='Gestion Usuarios' itemThree='Crear Comunicados' itemFour="Editar Persona" itemFive={AuthService.logout} />
       }
     }
-    
+
   }
-  const contentPage = () =>{
-    
-    if(location.pathname === "/profile"){
+  const contentPage = () => {
+
+    if (location.pathname === "/profile") {
       if (communiques) {
         return (
-            <div className="profilePage-body">
-              {communiques.map((elem) => {
-                return (
-                    <ReleaseCard communique={elem} />
-                );
-              })}
-            </div>
+          <div className="profilePage-body">
+            {communiques.map((elem) => {
+              return (
+                <ReleaseCard communique={elem} />
+              );
+            })}
+          </div>
         )
       }
     }
-    else if(location.pathname === "/profile/createCommunique" && AuthService.getCurrentUser().role == 'ROLE_ADMIN'){
+    else if (location.pathname === "/profile/createCommunique" && AuthService.getCurrentUser().role == 'ROLE_ADMIN') {
       return <Routes>
-              <Route path="createCommunique" element = {<CreateCommunique/>}/>
-             </Routes>
+        <Route path="createCommunique" element={<CreateCommunique />} />
+      </Routes>
+    }
+    else if (location.pathname === "/profile/editarpersona" && AuthService.getCurrentUser().role == 'ROLE_ADMIN') {
+      return <Routes>
+        <Route path="editarpersona" element={<EditPerson />} />
+      </Routes>
     }
   }
 
@@ -87,7 +93,7 @@ function ProfilePage() {
     <div className="profilePage-container">
       {currentRoleNavBar()}
       <div className="profilePage-body">
-      {contentPage()}     
+        {contentPage()}
       </div>
     </div>
   );
