@@ -57,7 +57,7 @@ function ProfilePage() {
       } else if (AuthService.getCurrentUser().role === 'ROLE_GUARD') {
         return <NavBarGeneral itemOne='Comunicados' itemTwo='Paqueteria' itemFour={AuthService.logout} />
       } else if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
-        return <NavBarGeneral itemOne='Comunicados' itemTwo='Gestion Usuarios' itemThree='Crear Comunicados' itemFour="Editar Persona" itemFive={AuthService.logout} />
+        return <NavBarGeneral itemOne='Comunicados' itemTwo='Gestion Usuarios' itemFour={AuthService.logout} />
       }
     }
 
@@ -79,12 +79,12 @@ function ProfilePage() {
     }
     else if (location.pathname === "/profile/createCommunique" && AuthService.getCurrentUser().role == 'ROLE_ADMIN') {
       return <Routes>
-        <Route path="createCommunique" element={<CreateCommunique />} />
+        <Route path="createCommunique" element={<CreateCommunique/>} />
       </Routes>
     }
     else if (location.pathname === "/profile/editarpersona" && AuthService.getCurrentUser().role == 'ROLE_ADMIN') {
       return <Routes>
-        <Route path="editarpersona" element={<EditPerson />} />
+        <Route path="editarpersona" element={<EditPerson/>} />
       </Routes>
     }
   }
