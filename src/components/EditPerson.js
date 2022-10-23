@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import '../styles/registerCard.css';
+import '../styles/editPersonCard.css';
 import ButtonGreen from './ButtonGreen';
 import TitleCard from './TitleCard';
 import PersonService from '../services/person-service';
@@ -69,7 +69,7 @@ const EditPerson = (props) => {
     }
 
     return (
-        <div className='contenedor-form-register'>
+        <div className='contenedor-form-edit'>
             <form className='form-find-dni' onSubmit={handleFindByDNI}>
                 <img className="mb-4" src={require('../images/Logo.png')} alt="" width="120" height="120" />
                 <TitleCard text="Editar Persona" />
