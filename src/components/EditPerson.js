@@ -52,7 +52,7 @@ const EditPerson = (props) => {
             person
         ).then(
             response => {
-                alert("Se ha editado satisfactoriamente + response.data")
+                alert("Se ha editado satisfactoriamente al usuario con dni " + response.data.dni)
                 window.location.reload(true);
             },
             error => {
@@ -84,7 +84,7 @@ const EditPerson = (props) => {
             {person && <div>
                 <form className='form-register' onSubmit={handleRegister2}>
                     <div className="form-floating" id="input-form">
-                        <input type="text" name="nombre" className="form-control" id="floatingName" value={person.firstName}
+                        <input type="text" name="firstName" className="form-control" id="floatingName" value={person.firstName}
                             onChange={handleOnChange} required></input>
                         <label className="form-label" htmlFor="floatingName">Nombres</label>
                     </div>
@@ -99,12 +99,12 @@ const EditPerson = (props) => {
                         <label className="form-label" htmlFor="floatingEmail">Correo</label>
                     </div>
                     <div className="form-floating" id="input-form">
-                        <input type="number" className="form-control" id="floatingPhone" value={person.phone}
+                        <input type="number" name="phone" className="form-control" id="floatingPhone" value={person.phone}
                             onChange={handleOnChange} required></input>
                         <label className="form-label" htmlFor="floatingPhone">Telefono</label>
                     </div>
                     <div className="form-floating" id="input-form">
-                        <input type="number" name="cedula" className="form-control" id="floatingCedula" placeholder="Password" value={person.dni}
+                        <input type="number" name="dni" className="form-control" id="floatingCedula" placeholder="Password" value={person.dni}
                             onChange={handleOnChange} required></input>
                         <label className="form-label" htmlFor="floatingCedula">Cédula</label>
                     </div>
