@@ -6,7 +6,7 @@ import '../styles/createCommunique.css';
 import { useLocation } from 'react-router-dom';
 import authService from '../services/auth-service';
 
-const ChangePassword = (props) => {
+const RecoverPassword = (props) => {
     const [form, setForm] = useState({ email: "", currentPassword: "", newPassword: "" });
 
     const handleOnChange = (e) => {
@@ -14,10 +14,10 @@ const ChangePassword = (props) => {
         console.log(form)
     }
 
-    const changePassword = (e) => {
+    const recoverPassword = (e) => {
         e.preventDefault();
         console.log(form)
-        authService.changePassword(form.email, form.currentPassword, form.newPassword).then(
+        authService.recoverPassword(form.email, form.currentPassword, form.newPassword).then(
             () => {
                 alert("Se ha cambiado la contraseña")
             },
@@ -34,7 +34,7 @@ const ChangePassword = (props) => {
 
     return (
         <div className='contenedor-createCommunique'>
-            <TitleCard text="Change Password" />
+            <TitleCard text="Recuperar Contraseña" />
             <form className='form-Communique' onSubmit={changePassword}>
                 <div className="form-floating" id="input-form">
                     <input type="email" name="email" className="form-control" id="floatingName" placeholder="name" value={form.email} onChange={handleOnChange} required></input>
@@ -48,10 +48,10 @@ const ChangePassword = (props) => {
                     <textarea type="text" name="newPassword" className="form-control" id="floatingDescripcion" placeholder="descripcion" value={form.newPassword} onChange={handleOnChange} required></textarea>
                     <label className="form-label" htmlFor="floatingInput">Contraseña nueva</label>
                 </div>
-                <ButtonGreen id="submit-button" text="Cambiar contraseña" type="Submit" />
+                <ButtonGreen id="submit-button" text="Guardar contraseña" type="Submit" />
             </form>
         </div>
     )
 }
 
-export default ChangePassword;
+export default RecoverPassword;
