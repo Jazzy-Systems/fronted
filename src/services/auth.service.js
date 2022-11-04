@@ -49,7 +49,7 @@ class AuthService {
             email,
             currentPassword,
             newPassword
-        },  { headers: authHeader() });
+        }, { headers: authHeader() });
     }
 
     recoverPassword(email, currentPassword, newPassword) {
@@ -61,8 +61,12 @@ class AuthService {
     }
 
     requestRecoveryPassword(email) {
-        return axios.get(API_URL + "recover", {
-            email
+        let currentPassword = null;
+        let newPassword = null;
+        return axios.post(API_URL + "recover", {
+            email,
+            currentPassword,
+            newPassword
         });
     }
 }

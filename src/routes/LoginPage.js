@@ -13,18 +13,18 @@ function LoginPage() {
   };
 
   const goRecovered = () => {
-    navigate('/recovered-password');
+    navigate('/recover');
   };
 
   const goProfile = () => {
     navigate('/profile');
-  };  
+  };
 
-    return (
-      <div className="generalPage-container">
-        <Login fRecovered = {goRecovered} fRegister = {goRegister} fProfile = {goProfile}/>
-      </div>
-    );
-  }
-  
-  export default LoginPage;
+  return (
+    <div className="generalPage-container">
+      <Login fRecovered={goRecovered} fRegister={goRegister} fProfile={goProfile} />
+    </div>
+  );
+}
+
+export default LoginPage;

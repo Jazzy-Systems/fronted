@@ -4,7 +4,7 @@ import TitleCard from './TitleCard';
 import ButtonGreen from './ButtonGreen';
 import '../styles/createCommunique.css';
 import { useLocation } from 'react-router-dom';
-import authService from '../services/auth-service';
+import AuthService from "../services/auth.service";
 
 const RecoverPassword = (props) => {
     const [form, setForm] = useState({ email: "", currentPassword: "", newPassword: "" });
@@ -17,7 +17,7 @@ const RecoverPassword = (props) => {
     const recoverPassword = (e) => {
         e.preventDefault();
         console.log(form)
-        authService.recoverPassword(form.email, form.currentPassword, form.newPassword).then(
+        AuthService.recoverPassword(form.email, form.currentPassword, form.newPassword).then(
             () => {
                 alert("Se ha cambiado la contraseña")
             },
@@ -35,18 +35,24 @@ const RecoverPassword = (props) => {
     return (
         <div className='contenedor-createCommunique'>
             <TitleCard text="Recuperar Contraseña" />
-            <form className='form-Communique' onSubmit={changePassword}>
+            <form className='form-Communique' onSubmit={recoverPassword}>
                 <div className="form-floating" id="input-form">
                     <input type="email" name="email" className="form-control" id="floatingName" placeholder="name" value={form.email} onChange={handleOnChange} required></input>
                     <label className="form-label" htmlFor="floatingInput">Email</label>
                 </div>
-                <div className="form-floating" id="input-formDescripcion">
-                    <textarea type="password" name="currentPassword" className="form-control" id="floatingDescripcion" placeholder="descripcion" value={form.currentPassword} onChange={handleOnChange} required></textarea>
-                    <label className="form-label" htmlFor="floatingInput">Contraseña Actual</label>
+                <div className="form-floating" id="input-form">
+                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
+                        name="currentPassword"
+                        value={form.currentPassword}
+                        onChange={handleOnChange} required></input>
+                    <label className="text-input" htmlFor="floatingPassword">Contraseña Actual</label>
                 </div>
-                <div className="form-floating" id="input-formDescripcion">
-                    <textarea type="text" name="newPassword" className="form-control" id="floatingDescripcion" placeholder="descripcion" value={form.newPassword} onChange={handleOnChange} required></textarea>
-                    <label className="form-label" htmlFor="floatingInput">Contraseña nueva</label>
+                <div className="form-floating" id="input-form">
+                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
+                        name="newPassword"
+                        value={form.newPassword}
+                        onChange={handleOnChange} required></input>
+                    <label className="text-input" htmlFor="floatingPassword">Contraseña Nueva</label>
                 </div>
                 <ButtonGreen id="submit-button" text="Guardar contraseña" type="Submit" />
             </form>

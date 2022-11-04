@@ -3,8 +3,8 @@ import { useState } from 'react';
 import TitleCard from './TitleCard';
 import ButtonGreen from './ButtonGreen';
 import '../styles/createCommunique.css';
-import { useLocation } from 'react-router-dom';
-import authService from '../services/auth-service';
+import AuthService from "../services/auth.service";
+
 
 const RequestRecoverPassword = (props) => {
     const [form, setForm] = useState({ email: "" });
@@ -17,7 +17,7 @@ const RequestRecoverPassword = (props) => {
     const requestRecoveryPassword = (e) => {
         e.preventDefault();
         console.log(form)
-        authService.requestRecoveryPassword(form.email).then(
+        AuthService.requestRecoveryPassword(form.email).then(
             () => {
                 alert("Se ha cambiado la contraseña")
             },
