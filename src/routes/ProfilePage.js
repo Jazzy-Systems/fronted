@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import CreateCommunique from '../components/CreateCommunique';
 import authHeader from '../services/auth-header';
 import EditPerson from '../components/EditPerson';
+import CreatePackage from '../components/CreatePackage';
+
 
 function ProfilePage() {
 
@@ -80,6 +82,11 @@ function ProfilePage() {
     else if (location.pathname === "/profile/editarpersona" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
       return <Routes>
         <Route path="editarpersona" element={<EditPerson />} />
+      </Routes>
+    }
+    else if (location.pathname === "/profile/packages" && AuthService.getCurrentUser().role == 'ROLE_GUARD') {
+      return <Routes>
+        <Route path="packages" element={<CreatePackage/>} />
       </Routes>
     }
   }
