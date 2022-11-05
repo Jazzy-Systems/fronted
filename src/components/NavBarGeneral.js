@@ -49,7 +49,7 @@ const NavBarGeneral = (props) => {
     const navBarRoutes = () => {
         if (props.itemTwo === "Paqueteria") {
             return <li className="nav-item">
-                        <a className="nav-link" href="http://localhost:3000/profile">{props.itemTwo}</a>
+                        <a className="nav-link" href="http://localhost:3000/profile/packages">{props.itemTwo}</a>
                     </li>
         } else if (props.itemTwo === "Gestion Usuarios") {
             return <li className="nav-item dropdown">
