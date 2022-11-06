@@ -14,6 +14,15 @@ const CreatePackage = (props) => {
 
     const [apartments, setApartments] = useState(null);
 
+    const [packages, setPackages] = useState("");
+
+    const handleOnChange = (event) => {
+        event.preventDefault();
+        setPackages({
+            ...packages,
+            [event.target.name]: event.target.value
+        });
+    }
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
@@ -22,7 +31,7 @@ const CreatePackage = (props) => {
         const dataFetch = async () => {
             const data = await (
                 await fetch(
-                    "http://localhost:8081/api/v1/apartment/", requestOptions
+                    "http://localhost:8081/api/v1/apartment/all", requestOptions
                 )
             ).json();
             console.log(data);
@@ -32,14 +41,46 @@ const CreatePackage = (props) => {
         dataFetch();
     }, []);
 
+    const handleFindByApartment = (e) => {
+        e.preventDefault();
+        PersonService.findByApartment(findIdApartment(apartment)).then(
+            (response) => {
+                // todo setVisible = true
+                console.log(response.data)
+
+            },
+            error => {
+                const resMessage =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+                alert(resMessage + "erorr");
+            }
+        );
+    }
+
+    const findIdApartment = (apartamento) =>{
+        const idApartment = 0
+        for (let i = 0; i < apartments.length; i++){
+            if((apartments[i].buildingName + "-" + apartments[i].apartmentNumber) === apartamento){
+                return apartments[i].apartmentId
+            }
+          }
+    }
+    const handleRegister2 = (e) => {
+        e.preventDefault();
+        console.log("Severo parc")
+    }
     if (apartments) {
         return (
             <div>
+                <form className='form-find-dni' onSubmit={handleFindByApartment}>
                 <div className="col-md-5">
                     <label htmlFor="selector" className="form-label">Torre-Apartamento</label>
                     <select required className="form-select" id="rol-selector" value={apartment} onChange={(e) => setApartment(e.target.value)}>
                         <option></option>
-
                         {apartments.map((apartment) => (
                             <option value={apartment.buildingName + "-" + apartment.apartmentNumber}>
                                 {apartment.buildingName + "-" + apartment.apartmentNumber}
@@ -50,6 +91,34 @@ const CreatePackage = (props) => {
                         Seleccione Torre-Apartamento por favor.
                     </div>
                 </div>
+                <ButtonGreen id="submit-button" text="Buscar Persona" type="Submit" />
+                </form>
+                {apartment && <div>
+                <form className='form-register' onSubmit={handleRegister2}>
+                    <div className="form-floating" id="input-form">
+                        <input type="text" name="messengerName" className="form-control" id="floatingName" value={packages.messengerName}
+                            onChange={handleOnChange} required></input>
+                        <label className="form-label" htmlFor="floatingmessengerName">Nombre mensajero</label>
+                    </div>
+                    <div className="form-floating" id="input-form">
+                        <input type="text" name="typePack" className="form-control" id="floatingLastNames" placeholder="lastname"
+                            value={packages.typePack} onChange={handleOnChange} required></input>
+                        <label className="form-label" htmlFor="floatingTypePack">Tipo paquete</label>
+                    </div>
+                    <div className="form-floating" id="input-form">
+                        <input type="email" name="observation" className="form-control" id="floatingEmail" placeholder="name@example.com"
+                            value={packages.observation} onChange={handleOnChange} required></input>
+                        <label className="form-label" htmlFor="floatingObservation">Observaciones</label>
+                    </div>
+                    <div className="form-floating" id="input-form">
+                        <input type="number" name="phone" className="form-control" id="floatingPhone" value={packages.idPerson}
+                            onChange={handleOnChange} required></input>
+                        <label className="form-label" htmlFor="floatingIdPerson">Id persona</label>
+                    </div>
+                    <ButtonGreen id="submit-button" text="Guardar Paquete" type="Submit" />
+                </form>
+            </div>
+            }
             </div>
         )
     }
