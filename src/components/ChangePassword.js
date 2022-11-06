@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
 import { useState } from 'react';
 import TitleCard from './TitleCard';
 import ButtonGreen from './ButtonGreen';
 import '../styles/createCommunique.css';
-import { useLocation } from 'react-router-dom';
 import authService from '../services/auth.service';
 
 const ChangePassword = (props) => {
     const [form, setForm] = useState({ email: "", currentPassword: "", newPassword: "" });
-
+    const [resMessage, setResMessage] = useState(null);
     const handleOnChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
         console.log(form)
@@ -22,12 +20,12 @@ const ChangePassword = (props) => {
                 alert("Se ha cambiado la contraseña")
             },
             error => {
-                const resMessage =
+                setResMessage(
                     (error.response &&
                         error.response.data &&
                         error.response.data.message) ||
                     error.message ||
-                    error.toString();
+                    error.toString());
             }
         );
     }
@@ -56,6 +54,9 @@ const ChangePassword = (props) => {
                 </div>
                 <ButtonGreen id="submit-button" text="Guardar contraseña" type="Submit" />
             </form>
+            <div>
+                <span>{resMessage}</span>
+            </div>
         </div>
     )
 }

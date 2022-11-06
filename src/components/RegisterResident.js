@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useEffect, useState } from 'react';
 import '../styles/modules.css';
 import authHeader from '../services/auth-header';

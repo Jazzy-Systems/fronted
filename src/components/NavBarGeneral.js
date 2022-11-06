@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../styles/modules.css';
 import AuthService from "../services/auth.service";
 
 const NavBarGeneral = (props) => {
 
-    const showDropDownCommunique = () =>{
+    const showDropDownCommunique = () => {
         let elementOne = document.getElementById("dropDownComOne");
         let elementTwo = document.getElementById("dropDownComTwo");
 
-        if(elementOne.classList.contains("show")){
+        if (elementOne.classList.contains("show")) {
             elementOne.classList.remove("show");
             elementTwo.classList.remove("show");
-        }else{
+        } else {
             elementOne.classList.add("show");
             elementTwo.classList.add("show");
         }
         console.log(elementOne.classList)
     }
-    const showDropDownUser = () =>{
+    const showDropDownUser = () => {
         let elementOne = document.getElementById("dropDownUserOne");
         let elementTwo = document.getElementById("dropDownUserTwo");
 
-        if(elementOne.classList.contains("show")){
+        if (elementOne.classList.contains("show")) {
             elementOne.classList.remove("show");
             elementTwo.classList.remove("show");
-        }else{
+        } else {
             elementOne.classList.add("show");
             elementTwo.classList.add("show");
         }
@@ -33,32 +33,32 @@ const NavBarGeneral = (props) => {
     const communiqueByRol = () => {
         if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
             return <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" id = "dropDownComOne" href="#" data-bs-toggle="dropdown" aria-expanded="false" onClick = {showDropDownCommunique}>{props.itemOne}</a>
-                    <ul className="dropdown-menu" id = "dropDownComTwo" data-bs-popper="static">
+                <button className="nav-link dropdown-toggle" id="dropDownComOne" href="#" data-bs-toggle="dropdown" aria-expanded="false" onClick={showDropDownCommunique}>{props.itemOne}</button>
+                <ul className="dropdown-menu" id="dropDownComTwo" data-bs-popper="static">
                     <li><a className="dropdown-item" href="http://localhost:3000/profile">Ver comunicados</a></li>
-                        <li><a className="dropdown-item" href="http://localhost:3000/profile/createCommunique">Crear Comunicado</a></li>
-                    </ul>
-                   </li>
-        } else{
+                    <li><a className="dropdown-item" href="http://localhost:3000/profile/createCommunique">Crear Comunicado</a></li>
+                </ul>
+            </li>
+        } else {
             return <li className="nav-item">
-                    <a className="nav-link" href="http://localhost:3000/profile">{props.itemOne}</a>
-                   </li>
+                <a className="nav-link" href="http://localhost:3000/profile">{props.itemOne}</a>
+            </li>
         }
     }
 
     const navBarRoutes = () => {
         if (props.itemTwo === "Paqueteria") {
             return <li className="nav-item">
-                        <a className="nav-link" href="http://localhost:3000/profile">{props.itemTwo}</a>
-                    </li>
+                <a className="nav-link" href="http://localhost:3000/profile">{props.itemTwo}</a>
+            </li>
         } else if (props.itemTwo === "Gestion Usuarios") {
             return <li className="nav-item dropdown">
-                     <a className="nav-link dropdown-toggle" id = "dropDownUserOne" href="#" data-bs-toggle="dropdown" aria-expanded="false" onClick = {showDropDownUser}>{props.itemTwo}</a>
-                     <ul className="dropdown-menu" id = "dropDownUserTwo" data-bs-popper="static">
-                        <li><a className="dropdown-item" href="http://localhost:3000/register">Crear Persona</a></li>
-                        <li><a className="dropdown-item" href="http://localhost:3000/profile/editarpersona">Editar Persona</a></li>
-                     </ul>
-                    </li>
+                <button className="nav-link dropdown-toggle" id="dropDownUserOne" href="#" data-bs-toggle="dropdown" aria-expanded="false" onClick={showDropDownUser}>{props.itemTwo}</button>
+                <ul className="dropdown-menu" id="dropDownUserTwo" data-bs-popper="static">
+                    <li><a className="dropdown-item" href="http://localhost:3000/register">Crear Persona</a></li>
+                    <li><a className="dropdown-item" href="http://localhost:3000/profile/editarpersona">Editar Persona</a></li>
+                </ul>
+            </li>
         }
     }
     return (

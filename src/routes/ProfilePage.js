@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import '../styles/generalPages.css';
 import NavBarGeneral from '../components/NavBarGeneral';
-import { Routes, Route, useNavigate, useLocation, Switch } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import ReleaseCard from '../components/ReleaseCard';
 import AuthService from "../services/auth.service";
 import { useEffect, useState } from 'react';
@@ -14,11 +13,14 @@ function ProfilePage() {
 
   let location = useLocation();
   let navigate = useNavigate();
-  const [pageStatus, setpageStatus] = useState(false);
 
   const [communiques, setCommuniques] = useState(null);
 
   useEffect(() => {
+    if (AuthService.getCurrentUser() == null) {
+      //alert("No hay credenciales actuales o usted no ha iniciado sesión.")
+      navigate("/login")
+    }
     const requestOptions = {
       method: 'GET',
       headers: authHeader()
@@ -35,19 +37,12 @@ function ProfilePage() {
     };
 
     dataFetch();
-  }, [])
+  }, [navigate])
 
 
-  const handleOnChange = (e) => {
-
-    setpageStatus(AuthService.getCurrentUser())
-  }
 
   useEffect(() => {
-    if (AuthService.getCurrentUser() == null) {
-      //alert("No hay credenciales actuales o usted no ha iniciado sesión.")
-      navigate("/login")
-    }
+
   }, [])
 
   const currentRoleNavBar = () => {
@@ -77,14 +72,14 @@ function ProfilePage() {
         )
       }
     }
-    else if (location.pathname === "/profile/createCommunique" && AuthService.getCurrentUser().role == 'ROLE_ADMIN') {
+    else if (location.pathname === "/profile/createCommunique" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
       return <Routes>
-        <Route path="createCommunique" element={<CreateCommunique/>} />
+        <Route path="createCommunique" element={<CreateCommunique />} />
       </Routes>
     }
-    else if (location.pathname === "/profile/editarpersona" && AuthService.getCurrentUser().role == 'ROLE_ADMIN') {
+    else if (location.pathname === "/profile/editarpersona" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
       return <Routes>
-        <Route path="editarpersona" element={<EditPerson/>} />
+        <Route path="editarpersona" element={<EditPerson />} />
       </Routes>
     }
   }

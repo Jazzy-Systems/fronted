@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useEffect, useState } from 'react';
 import '../styles/registerCard.css';
 import ButtonGreen from './ButtonGreen';
@@ -95,7 +95,7 @@ const RegisterUser = (props) => {
                     </div>
                     <ButtonGreen id="submit-button" text="Registrarme" type="Submit" />
                     <p id="text-extra">¿Ya tienes una cuenta?<br></br>
-                        <a href="" onClick={props.fLogin}>Iniciar Sesión</a>
+                        <button href="" onClick={props.fLogin}>Iniciar Sesión</button>
                     </p>
                 </form>
             </div>

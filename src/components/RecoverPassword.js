@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import TitleCard from './TitleCard';
 import ButtonGreen from './ButtonGreen';
 import '../styles/createCommunique.css';
-import { useLocation } from 'react-router-dom';
 import AuthService from "../services/auth.service";
 
 const RecoverPassword = (props) => {
@@ -28,6 +27,7 @@ const RecoverPassword = (props) => {
                         error.response.data.message) ||
                     error.message ||
                     error.toString();
+                alert(resMessage);
             }
         );
     }

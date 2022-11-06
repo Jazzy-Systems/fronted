@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../styles/registerCard.css';
@@ -11,7 +11,6 @@ import TitleCard from './TitleCard';
 
 const Register = (props) => {
     let navigate = useNavigate();
-    const [pageStatus, setpageStatus] = useState(false);
     //Uso de estados para renderizar el formulario según el rol escogido
     const [rolNamed, setRol] = useState("Seleccione un rol");
     const [residentContentVisible, setresidentContentVisible] = useState(false);
@@ -49,15 +48,10 @@ const Register = (props) => {
             ? setresidentContentVisible(true)
             : setresidentContentVisible(false);
         rolNamed === "ROLE_GUARD" ? setvigilantContentVisible(true) : setvigilantContentVisible(false);
-    }, [rolNamed]);
+    }, [navigate, rolNamed]);
 
     const handleOnChange = (e) => {
         setRol(e.target.value);
-    }
-
-    const handleOnChange3 = (e) => {
-
-        setpageStatus(AuthService.getCurrentUser())
     }
 
     const handleRegister2 = (e) => {
@@ -155,7 +149,7 @@ const Register = (props) => {
                     {vigilantContentVisible && <RegisterVigilant />}
                     <ButtonGreen id="submit-button" text="Registrarme" type="Submit" />
                     <p id="text-extra">¿Ya tienes una cuenta?<br></br>
-                        <a href="" onClick={props.fLogin}>Iniciar Sesión</a>
+                        <button href="" onClick={props.fLogin}>Iniciar Sesión</button>
                     </p>
                 </form>
             </div>

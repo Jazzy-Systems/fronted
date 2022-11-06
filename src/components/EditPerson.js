@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import '../styles/editPersonCard.css';
 import ButtonGreen from './ButtonGreen';
 import TitleCard from './TitleCard';
@@ -40,7 +39,7 @@ const EditPerson = (props) => {
                         error.response.data.message) ||
                     error.message ||
                     error.toString();
-                alert(resMessage + "erorr");
+                alert(resMessage + "error");
             }
         );
     }

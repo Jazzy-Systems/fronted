@@ -1,6 +1,3 @@
-import AuthService from "./services/auth.service";
-import { render } from 'react-dom';
-import MainPage from './routes/MainPage.js';
 import RegisterPage from './routes/RegisterPage.js';
 import LoginPage from './routes/LoginPage.js';
 import RecoveredPage from './routes/RecoveredPage.js';

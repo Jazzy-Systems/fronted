@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
 import { useState } from 'react';
 import TitleCard from './TitleCard';
 import ButtonGreen from './ButtonGreen';
 import '../styles/createCommunique.css';
 import AuthService from "../services/auth.service";
-
 
 const RequestRecoverPassword = (props) => {
     const [form, setForm] = useState({ email: "" });
@@ -14,6 +12,7 @@ const RequestRecoverPassword = (props) => {
         console.log(form)
     }
 
+    const [resMessage, setResMessage] = useState(null);
     const requestRecoveryPassword = (e) => {
         e.preventDefault();
         console.log(form)
@@ -22,12 +21,12 @@ const RequestRecoverPassword = (props) => {
                 alert("Se ha cambiado la contraseña")
             },
             error => {
-                const resMessage =
+                setResMessage(
                     (error.response &&
                         error.response.data &&
                         error.response.data.message) ||
                     error.message ||
-                    error.toString();
+                    error.toString());
             }
         );
     }
@@ -42,6 +41,9 @@ const RequestRecoverPassword = (props) => {
                 </div>
                 <ButtonGreen id="submit-button" text="Recuperar contraseña" type="Submit" />
             </form>
+            <div>
+                <span>{resMessage}</span>
+            </div>
         </div>
     )
 }

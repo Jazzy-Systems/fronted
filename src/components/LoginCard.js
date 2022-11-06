@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../styles/loginCard.css';
 import ButtonGreen from './ButtonGreen';
 import TitleCard from './TitleCard';
 
 import AuthService from "../services/auth.service";
 const LoginCard = (props) => {
-    const [formValue, setformValue] = React.useState({
+    const [formValue, setformValue] = useState({
         email: '',
         password: ''
     });
@@ -16,22 +16,22 @@ const LoginCard = (props) => {
         const loginFormData = new FormData();
         loginFormData.append("email", formValue.email)
         loginFormData.append("password", formValue.password)
-        
+
         AuthService.login(formValue.email, formValue.password).then(
             () => {
                 props.fProfile();
                 window.location.reload();
             },
             error => {
-              const resMessage =
-                (error.response &&
-                  error.response.data &&
-                  error.response.data.message) ||
-                error.message ||
-                error.toString();
-                alert("Las credenciales son incorrectas o el usuario no existe.")    
+                const resMessage =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+                alert("Las credenciales son incorrectas o el usuario no existe." + resMessage)
             }
-          );
+        );
     }
 
     const handleChange = (event) => {
@@ -62,8 +62,8 @@ const LoginCard = (props) => {
                 </div>
                 <ButtonGreen id="submit-button" text="Entrar" type="Submit" />
                 <p id="text-extra">¿No tienes una cuenta?<br></br>
-                    <a href="" onClick={props.fRegister}>Registrarse</a><br></br><br></br>
-                    <a href="" onClick={props.fRecovered}>¿Olvidaste tu contraseña?</a>
+                    <button onClick={props.fRegister}>Registrarse</button><br></br><br></br>
+                    <button href="" onClick={props.fRecovered}>¿Olvidaste tu contraseña?</button>
                 </p>
             </form>
         </div>

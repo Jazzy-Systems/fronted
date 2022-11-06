@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
 import { useState } from 'react';
 import TitleCard from './TitleCard';
 import ButtonGreen from './ButtonGreen';
 import '../styles/createCommunique.css';
-import { useLocation } from 'react-router-dom';
 import communiqueService from '../services/communique-service';
 
 const CreateCommunique = (props) => {
     const [form, setForm] = useState({ type: "" });
+    const [resMessage, setResMessage] = useState(null);
 
     const handleOnChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
@@ -22,12 +21,12 @@ const CreateCommunique = (props) => {
                 alert("Se ha publicado el comunicado, existosamente.")
             },
             error => {
-                const resMessage =
+                setResMessage(
                     (error.response &&
                         error.response.data &&
                         error.response.data.message) ||
                     error.message ||
-                    error.toString();
+                    error.toString());
             }
         );
     }
@@ -53,6 +52,9 @@ const CreateCommunique = (props) => {
                 </select>
                 <ButtonGreen id="submit-button" text="Crear" type="Submit" />
             </form>
+            <div>
+                <span>{resMessage}</span>
+            </div>
         </div>
     )
 }
