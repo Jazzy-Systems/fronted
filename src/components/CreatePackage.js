@@ -121,9 +121,9 @@ const CreatePackage = (props) => {
 
     if (apartments) {
         return (
-            <div>
+            <div className='contenedor-form-edit'>
                 <form className='form-find-dni' onSubmit={handleFindByApartment}>
-                <div className="col-md-5">
+                <div className="col-md-7">
                     <label htmlFor="selector" className="form-label">Torre-Apartamento</label>
                     <select required className="form-select" id="rol-selector" value={apartment} onChange={(e) => setApartment(e.target.value)}>
                         <option></option>
