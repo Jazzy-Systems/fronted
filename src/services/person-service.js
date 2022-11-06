@@ -8,6 +8,10 @@ class PersonService {
         return axios.get(API_URL + "dni/" + dni, { headers: authHeader() })
     }
 
+    findByApartment(id){
+        return axios.get(API_URL + "apart/" + id, { headers: authHeader() })
+    }
+
     update(person) {
         let personId = person.personId;
         let firstName = person.firstName;
