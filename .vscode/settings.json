@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/30e60e77-257e-46a9-bc71-60a00fb18e46/AppServices/subscriptions/30e60e77-257e-46a9-bc71-60a00fb18e46/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/jazzysystemsdemo/subscriptions/30e60e77-257e-46a9-bc71-60a00fb18e46/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/demojs",
+    "appService.deploySubpath": "."
+}

@@ -4,8 +4,8 @@ import '../styles/modules.css';
 import authHeader from '../services/auth-header';
 const RegisterResident = (props) => {
     const [apartment, setApartment] = useState("");
-
     const [apartments, setApartments] = useState(null);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const requestOptions = {
@@ -15,7 +15,7 @@ const RegisterResident = (props) => {
         const dataFetch = async () => {
             const data = await (
                 await fetch(
-                    "http://localhost:8081/api/v1/apartment/", requestOptions
+                    API_URL + "/api/v1/apartment/", requestOptions
                 )
             ).json();
             console.log(data);
@@ -23,7 +23,7 @@ const RegisterResident = (props) => {
             setApartments(data);
         };
         dataFetch();
-    }, []);
+    }, [API_URL]);
 
     if (apartments) {
         return (

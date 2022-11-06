@@ -13,7 +13,7 @@ function ProfilePage() {
 
   let location = useLocation();
   let navigate = useNavigate();
-
+  const API_URL = process.env.REACT_APP_API_URL;
   const [communiques, setCommuniques] = useState(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function ProfilePage() {
     const dataFetch = async () => {
       const data = await (
         await fetch(
-          "http://localhost:8081/api/v1/communique/", requestOptions
+          API_URL + "/api/v1/communique/", requestOptions
         )
       ).json();
       console.log(data);
@@ -37,7 +37,7 @@ function ProfilePage() {
     };
 
     dataFetch();
-  }, [navigate])
+  }, [API_URL, navigate])
 
 
 

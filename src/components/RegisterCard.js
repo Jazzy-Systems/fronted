@@ -9,6 +9,7 @@ import AuthService from '../services/auth.service';
 import authHeader from '../services/auth-header';
 import TitleCard from './TitleCard';
 
+
 const Register = (props) => {
     let navigate = useNavigate();
     //Uso de estados para renderizar el formulario según el rol escogido
@@ -18,6 +19,8 @@ const Register = (props) => {
     //Uso de estados para capturar datos del formulario
     const [form, setForm] = useState({ email: "", rolName: "", cedula: "" });
     const [roles, setRoles] = useState(null);
+
+    const API_URL = process.env.REACT_APP_API_URL;
     const handleOnChange2 = (e) => {
 
         setForm({ ...form, [e.target.name]: e.target.value })
@@ -35,7 +38,7 @@ const Register = (props) => {
         const dataFetch = async () => {
             const data = await (
                 await fetch(
-                    "http://localhost:8081/api/v1/role/", requestOptions
+                    API_URL + "/api/v1/role/", requestOptions
                 )
             ).json();
             console.log(data);
@@ -48,7 +51,7 @@ const Register = (props) => {
             ? setresidentContentVisible(true)
             : setresidentContentVisible(false);
         rolNamed === "ROLE_GUARD" ? setvigilantContentVisible(true) : setvigilantContentVisible(false);
-    }, [navigate, rolNamed]);
+    }, [API_URL, navigate, rolNamed]);
 
     const handleOnChange = (e) => {
         setRol(e.target.value);

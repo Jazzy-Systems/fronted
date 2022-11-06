@@ -5,8 +5,8 @@ import authHeader from '../services/auth-header';
 
 const RegisterVigilant = (props) => {
     const [nameCompany, setNameCompany] = useState("");
-
     const [companies, setCompanies] = useState(null);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const requestOptions = {
@@ -16,14 +16,14 @@ const RegisterVigilant = (props) => {
         const dataFetch = async () => {
             const data = await (
                 await fetch(
-                    "http://localhost:8081/api/v1/company/", requestOptions
+                    API_URL + "/api/v1/company/", requestOptions
                 )
             ).json();
             console.log(data);
             setCompanies(data);
         };
         dataFetch();
-    }, []);
+    }, [API_URL]);
     if (companies) {
         return (
             <div>
