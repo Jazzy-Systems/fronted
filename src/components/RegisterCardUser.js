@@ -8,7 +8,7 @@ import TitleCard from './TitleCard';
 
 
 const RegisterUser = (props) => {
-
+    const FRONT_URL = process.env.REACT_APP_FRONT_URL;
     const [form, setForm] = useState({ email: "" });
     const [roles, setRoles] = useState(null);
     const API_URL = process.env.REACT_APP_API_URL;
@@ -96,7 +96,7 @@ const RegisterUser = (props) => {
                     </div>
                     <ButtonGreen id="submit-button" text="Registrarme" type="Submit" />
                     <p id="text-extra">¿Ya tienes una cuenta?<br></br>
-                        <button href="" onClick={props.fLogin}>Iniciar Sesión</button>
+                        <a href={FRONT_URL + "/login"} onClick={props.fLogin}>Iniciar Sesión</a>
                     </p>
                 </form>
             </div>

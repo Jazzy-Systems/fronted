@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useEffect, useState } from 'react';
-import TitleCard from './TitleCard';
 import ButtonGreen from './ButtonGreen';
 import '../styles/editPersonCard.css';
-import { useLocation } from 'react-router-dom';
-
 import authHeader from '../services/auth-header';
 import PersonService from '../services/person-service';
-import communiqueService from '../services/communique-service';
 
 const CreatePackage = (props) => {
     const [apartment, setApartment] = useState("");
@@ -20,6 +16,7 @@ const CreatePackage = (props) => {
 
     const [persons, setPersons] = useState([]);
 
+    const API_URL = process.env.REACT_APP_API_URL;
     const handleOnChange = (event) => {
         event.preventDefault();
         setPackages({
@@ -35,7 +32,7 @@ const CreatePackage = (props) => {
         const dataFetch = async () => {
             const data = await (
                 await fetch(
-                    "http://localhost:8081/api/v1/apartment/all", requestOptions
+                    API_URL + "/api/v1/apartment/all", requestOptions
                 )
             ).json();
             console.log(data);
@@ -43,7 +40,7 @@ const CreatePackage = (props) => {
             setApartments(data);
         };
         dataFetch();
-    }, []);
+    }, [API_URL]);
 
     const handleFindByApartment = (e) => {
         e.preventDefault();
@@ -64,53 +61,53 @@ const CreatePackage = (props) => {
         );
     }
 
-    const findIdApartment = (apartamento) =>{
-        for (let i = 0; i < apartments.length; i++){
-            if((apartments[i].buildingName + "-" + apartments[i].apartmentNumber) === apartamento){
+    const findIdApartment = (apartamento) => {
+        for (let i = 0; i < apartments.length; i++) {
+            if ((apartments[i].buildingName + "-" + apartments[i].apartmentNumber) === apartamento) {
                 return apartments[i].apartmentId
             }
-          }
+        }
     }
-    const showContentPackage = () =>{
-        
-        if(Object.keys(persons).length > 0){
-            return <div>
-            <form className='form-register' onSubmit={handleRegister2}>
-                <div className="form-floating" id="input-form">
-                    <input type="text" name="messengerName" className="form-control" id="floatingName" value={packages.messengerName}
-                        onChange={handleOnChange} required></input>
-                    <label className="form-label" htmlFor="floatingmessengerName">Nombre mensajero</label>
-                </div>
-                <div className="form-floating" id="input-form">
-                    <input type="text" name="typePack" className="form-control" id="floatingLastNames" placeholder="lastname"
-                        value={packages.typePack} onChange={handleOnChange} required></input>
-                    <label className="form-label" htmlFor="floatingTypePack">Tipo paquete</label>
-                </div>
-                <div className="form-floating" id="input-form">
-                    <input type="email" name="observation" className="form-control" id="floatingEmail" placeholder="name@example.com"
-                        value={packages.observation} onChange={handleOnChange} required></input>
-                    <label className="form-label" htmlFor="floatingObservation">Observaciones</label>
-                </div>
-                
-                <div className="col-md-5">
-                    <label htmlFor="selector" className="form-label">Residente asignado al paquete</label>
-                    <select required className="form-select" id="rol-selector" value={person} onChange={(e) => setPerson(e.target.value)}>
-                        <option></option>
-                        {persons.map((person) => (
-                            <option value={person.firstName + "-" + person.lastName}>
-                                {person.firstName + "-" + person.lastName}
-                            </option>
-                        ))}
-                    </select>
-                    <div className="invalid-feedback">
-                        Seleccione un residente por favor
-                    </div>
-                </div>
+    const showContentPackage = () => {
 
-                <ButtonGreen id="submit-button" text="Guardar Paquete" type="Submit" />
-            </form>
-        </div>
-        
+        if (Object.keys(persons).length > 0) {
+            return <div>
+                <form className='form-register' onSubmit={handleRegister2}>
+                    <div className="form-floating" id="input-form">
+                        <input type="text" name="messengerName" className="form-control" id="floatingName" value={packages.messengerName}
+                            onChange={handleOnChange} required></input>
+                        <label className="form-label" htmlFor="floatingmessengerName">Nombre mensajero</label>
+                    </div>
+                    <div className="form-floating" id="input-form">
+                        <input type="text" name="typePack" className="form-control" id="floatingLastNames" placeholder="lastname"
+                            value={packages.typePack} onChange={handleOnChange} required></input>
+                        <label className="form-label" htmlFor="floatingTypePack">Tipo paquete</label>
+                    </div>
+                    <div className="form-floating" id="input-form">
+                        <input type="email" name="observation" className="form-control" id="floatingEmail" placeholder="name@example.com"
+                            value={packages.observation} onChange={handleOnChange} required></input>
+                        <label className="form-label" htmlFor="floatingObservation">Observaciones</label>
+                    </div>
+
+                    <div className="col-md-5">
+                        <label htmlFor="selector" className="form-label">Residente asignado al paquete</label>
+                        <select required className="form-select" id="rol-selector" value={person} onChange={(e) => setPerson(e.target.value)}>
+                            <option></option>
+                            {persons.map((person) => (
+                                <option value={person.firstName + "-" + person.lastName}>
+                                    {person.firstName + "-" + person.lastName}
+                                </option>
+                            ))}
+                        </select>
+                        <div className="invalid-feedback">
+                            Seleccione un residente por favor
+                        </div>
+                    </div>
+
+                    <ButtonGreen id="submit-button" text="Guardar Paquete" type="Submit" />
+                </form>
+            </div>
+
         }
 
     }
@@ -123,21 +120,21 @@ const CreatePackage = (props) => {
         return (
             <div className='contenedor-form-edit'>
                 <form className='form-find-dni' onSubmit={handleFindByApartment}>
-                <div className="col-md-7">
-                    <label htmlFor="selector" className="form-label">Torre-Apartamento</label>
-                    <select required className="form-select" id="rol-selector" value={apartment} onChange={(e) => setApartment(e.target.value)}>
-                        <option></option>
-                        {apartments.map((apartment) => (
-                            <option value={apartment.buildingName + "-" + apartment.apartmentNumber}>
-                                {apartment.buildingName + "-" + apartment.apartmentNumber}
-                            </option>
-                        ))}
-                    </select>
-                    <div className="invalid-feedback">
-                        Seleccione Torre-Apartamento por favor.
+                    <div className="col-md-7">
+                        <label htmlFor="selector" className="form-label">Torre-Apartamento</label>
+                        <select required className="form-select" id="rol-selector" value={apartment} onChange={(e) => setApartment(e.target.value)}>
+                            <option></option>
+                            {apartments.map((apartment) => (
+                                <option value={apartment.buildingName + "-" + apartment.apartmentNumber}>
+                                    {apartment.buildingName + "-" + apartment.apartmentNumber}
+                                </option>
+                            ))}
+                        </select>
+                        <div className="invalid-feedback">
+                            Seleccione Torre-Apartamento por favor.
+                        </div>
                     </div>
-                </div>
-                <ButtonGreen id="submit-button" text="Buscar Residente" type="Submit" />
+                    <ButtonGreen id="submit-button" text="Buscar Residente" type="Submit" />
                 </form>
                 {showContentPackage()}
             </div>

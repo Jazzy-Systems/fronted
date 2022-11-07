@@ -2,9 +2,8 @@ import React from 'react';
 import '../styles/modules.css';
 import AuthService from "../services/auth.service";
 
-import AuthService from "../services/auth.service";
-
 const NavBarGeneral = (props) => {
+    const FRONT_URL = process.env.REACT_APP_FRONT_URL;
 
     const showDropDownCommunique = () => {
         let elementOne = document.getElementById("dropDownComOne");
@@ -34,31 +33,31 @@ const NavBarGeneral = (props) => {
     }
     const communiqueByRol = () => {
         if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
-            return <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" id="dropDownComOne" href="#" data-bs-toggle="dropdown" aria-expanded="false" onClick={showDropDownCommunique}>{props.itemOne}</a>
+            return <li className="nav-item dropdown" id="navegar">
+                <a className="nav-link dropdown-toggle" id="dropDownComOne" href="#navegar" data-bs-toggle="dropdown" aria-expanded="false" onClick={showDropDownCommunique}>{props.itemOne}</a>
                 <ul className="dropdown-menu" id="dropDownComTwo" data-bs-popper="static">
-                    <li><a className="dropdown-item" href="http://localhost:3000/profile">Ver comunicados</a></li>
-                    <li><a className="dropdown-item" href="http://localhost:3000/profile/createCommunique">Crear Comunicado</a></li>
-                </ul>
-            </li>
+                    <li><a className="dropdown-item" href={FRONT_URL + "/profile"}>Ver comunicados</a></li>
+                    <li><a className="dropdown-item" href={FRONT_URL + "/profile/createCommunique"} > Crear Comunicado</a></li>
+                </ul >
+            </li >
         } else {
             return <li className="nav-item">
-                <a className="nav-link" href="http://localhost:3000/profile">{props.itemOne}</a>
-            </li>
+                <a className="nav-link" href={FRONT_URL + "/profile"} > {props.itemOne}</a>
+            </li >
         }
     }
 
     const navBarRoutes = () => {
         if (props.itemTwo === "Paqueteria") {
             return <li className="nav-item">
-                <a className="nav-link" href="http://localhost:3000/profile/packages">{props.itemTwo}</a>
+                <a className="nav-link" href={FRONT_URL + "/profile/packages"}>{props.itemTwo}</a>
             </li>
         } else if (props.itemTwo === "Gestion Usuarios") {
             return <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" id="dropDownUserOne" href="#" data-bs-toggle="dropdown" aria-expanded="false" onClick={showDropDownUser}>{props.itemTwo}</a>
+                <a className="nav-link dropdown-toggle" id="dropDownUserOne" href="#dropDownUserTwo" data-bs-toggle="dropdown" aria-expanded="false" onClick={showDropDownUser}>{props.itemTwo}</a>
                 <ul className="dropdown-menu" id="dropDownUserTwo" data-bs-popper="static">
-                    <li><a className="dropdown-item" href="http://localhost:3000/register">Crear Persona</a></li>
-                    <li><a className="dropdown-item" href="http://localhost:3000/profile/editarpersona">Editar Persona</a></li>
+                    <li><a className="dropdown-item" href={FRONT_URL + "/profile"}>Crear Persona</a></li>
+                    <li><a className="dropdown-item" href={FRONT_URL + "/profile/editarpersona"}>Editar Persona</a></li>
                 </ul>
             </li>
         }
@@ -76,10 +75,10 @@ const NavBarGeneral = (props) => {
                         {communiqueByRol()}
                         {navBarRoutes()}
                         <li className="nav-item">
-                            <a className="nav-link" href="http://localhost:3000/profile">{props.itemThree}</a>
+                            <a className="nav-link" href={FRONT_URL + "/profile"}>{props.itemThree}</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="http://localhost:3000/login">Log Out</a>
+                            <a className="nav-link" href={FRONT_URL + "/login"}>Log Out</a>
                         </li>
                     </ul>
                 </div>

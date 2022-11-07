@@ -11,6 +11,7 @@ import TitleCard from './TitleCard';
 
 
 const Register = (props) => {
+    const FRONT_URL = process.env.REACT_APP_FRONT_URL;
     let navigate = useNavigate();
     //Uso de estados para renderizar el formulario según el rol escogido
     const [rolNamed, setRol] = useState("Seleccione un rol");
@@ -152,7 +153,7 @@ const Register = (props) => {
                     {vigilantContentVisible && <RegisterVigilant />}
                     <ButtonGreen id="submit-button" text="Registrarme" type="Submit" />
                     <p id="text-extra">¿Ya tienes una cuenta?<br></br>
-                        <button href="" onClick={props.fLogin}>Iniciar Sesión</button>
+                        <button href={FRONT_URL + "/login"} onClick={props.fLogin}>Iniciar Sesión</button>
                     </p>
                 </form>
             </div>

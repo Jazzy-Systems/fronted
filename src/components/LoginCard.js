@@ -10,6 +10,7 @@ const LoginCard = (props) => {
         password: ''
     });
 
+    const FRONT_URL = process.env.REACT_APP_FRONT_URL;
     const handleSubmit = async (e) => {
         // store the states in the form data
         e.preventDefault()
@@ -62,8 +63,8 @@ const LoginCard = (props) => {
                 </div>
                 <ButtonGreen id="submit-button" text="Entrar" type="Submit" />
                 <p id="text-extra">¿No tienes una cuenta?<br></br>
-                    <button onClick={props.fRegister}>Registrarse</button><br></br><br></br>
-                    <button href="" onClick={props.fRecovered}>¿Olvidaste tu contraseña?</button>
+                    <a href={FRONT_URL + "/registerUser"} onClick={props.fRegister}>Registrarse</a><br></br><br></br>
+                    <a href={FRONT_URL + "/recoverpassword"} onClick={props.fRecovered}>¿Olvidaste tu contraseña?</a>
                 </p>
             </form>
         </div>
