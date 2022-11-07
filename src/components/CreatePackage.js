@@ -7,14 +7,10 @@ import PersonService from '../services/person-service';
 
 const CreatePackage = (props) => {
     const [apartment, setApartment] = useState("");
-
     const [apartments, setApartments] = useState(null);
-
-    const [packages, setPackages] = useState("");
-
+    const [packages, setPackages] = useState({ messengerName: "", typePack: "", observation: "",id: "" });
     const [person, setPerson] = useState("");
-
-    const [persons, setPersons] = useState([]);
+    const [persons, setPersons] = useState([]);    
 
     const API_URL = process.env.REACT_APP_API_URL;
     const handleOnChange = (event) => {
@@ -84,14 +80,14 @@ const CreatePackage = (props) => {
                         <label className="form-label" htmlFor="floatingTypePack">Tipo paquete</label>
                     </div>
                     <div className="form-floating" id="input-form">
-                        <input type="email" name="observation" className="form-control" id="floatingEmail" placeholder="name@example.com"
+                        <input type="text" name="observation" className="form-control" id="floatingEmail"
                             value={packages.observation} onChange={handleOnChange} required></input>
                         <label className="form-label" htmlFor="floatingObservation">Observaciones</label>
                     </div>
 
                     <div className="col-md-5">
                         <label htmlFor="selector" className="form-label">Residente asignado al paquete</label>
-                        <select required className="form-select" id="rol-selector" value={person} onChange={(e) => setPerson(e.target.value)}>
+                        <select required className="form-select" id="rol-selector" value={person.id} onChange={(e) => setPerson(e.target.value)}>
                             <option></option>
                             {persons.map((person) => (
                                 <option value={person.firstName + "-" + person.lastName}>
@@ -113,7 +109,7 @@ const CreatePackage = (props) => {
     }
     const handleRegister2 = (e) => {
         e.preventDefault();
-        console.log("Severo parc")
+        console.log(e.target[0].value,e.target[1].value,e.target[2].value,e.target[3].value)
     }
 
     if (apartments) {
