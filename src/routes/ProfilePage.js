@@ -76,12 +76,17 @@ function ProfilePage() {
     }
     else if (location.pathname === "/profile/createCommunique" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
       return <Routes>
-        <Route path="createCommunique" element={<CreateCommunique />} />
+        <Route path="createCommunique" element={<CreateCommunique/>} />
       </Routes>
     }
     else if (location.pathname === "/profile/editarpersona" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
       return <Routes>
-        <Route path="editarpersona" element={<EditPerson />} />
+        <Route path="editarpersona" element={<EditPerson/>} />
+      </Routes>
+    }
+    else if (location.pathname === "/profile/packages" && AuthService.getCurrentUser().role == 'ROLE_GUARD') {
+      return <Routes>
+        <Route path="packages" element={<CreatePackage/>} />
       </Routes>
     }
     else if (location.pathname === "/profile/packages" && AuthService.getCurrentUser().role == 'ROLE_GUARD') {
