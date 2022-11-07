@@ -4,6 +4,7 @@ import ButtonGreen from './ButtonGreen';
 import '../styles/editPersonCard.css';
 import authHeader from '../services/auth-header';
 import PersonService from '../services/person-service';
+import PackService from '../services/pack-service';
 
 const CreatePackage = (props) => {
     const [apartment, setApartment] = useState("");
@@ -64,6 +65,13 @@ const CreatePackage = (props) => {
             }
         }
     }
+    const findIdPerson = (personChoosed) => {
+        for (let i = 0; i < persons.length; i++) {
+            if ((persons[i].firstName + " " + persons[i].lastName) === personChoosed) {
+                return persons[i].personId
+            }
+        }
+    }
     const showContentPackage = () => {
 
         if (Object.keys(persons).length > 0) {
@@ -90,8 +98,8 @@ const CreatePackage = (props) => {
                         <select required className="form-select" id="rol-selector" value={person.id} onChange={(e) => setPerson(e.target.value)}>
                             <option></option>
                             {persons.map((person) => (
-                                <option value={person.firstName + "-" + person.lastName}>
-                                    {person.firstName + "-" + person.lastName}
+                                <option value={person.firstName + " " + person.lastName}>
+                                    {person.firstName + " " + person.lastName}
                                 </option>
                             ))}
                         </select>
@@ -109,7 +117,30 @@ const CreatePackage = (props) => {
     }
     const handleRegister2 = (e) => {
         e.preventDefault();
-        console.log(e.target[0].value,e.target[1].value,e.target[2].value,e.target[3].value)
+        let messengerName = e.target[0].value;
+        let typePack = e.target[1].value;
+        let observation = e.target[2].value;
+        let personDTO = {
+            personId: findIdPerson(e.target[3].value),
+        }
+        console.log(messengerName+" , "+typePack+" , "+observation+" , "+personDTO.personId)
+        PackService.save(
+            messengerName, typePack, observation,personDTO
+        ).then(
+            response => {
+                alert("Se ha registrado el paquete satisfactoriamente")
+                window.location.reload(true);
+            },
+            error => {
+                const resMessage =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+                alert("Ha ocurrido un error,por favor revise los datos ingresados")
+            }
+        );
     }
 
     if (apartments) {
