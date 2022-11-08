@@ -18,3 +18,20 @@
     align-items: center;
     justify-content: center;
 }
+.form-edit-pack{
+
+    margin-top: 20px;
+    padding: 10px;
+    border: 3px solid #eceef1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#packFloatingDescripcion{
+    width: 450px;
+    height: 150px !important;
+}

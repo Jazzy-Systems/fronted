@@ -9,6 +9,7 @@ import CreateCommunique from '../components/CreateCommunique';
 import authHeader from '../services/auth-header';
 import EditPerson from '../components/EditPerson';
 import CreatePackage from '../components/CreatePackage';
+import EditPackage from '../components/EditPackage';
 
 
 function ProfilePage() {
@@ -33,7 +34,6 @@ function ProfilePage() {
           API_URL + "/api/v1/communique/", requestOptions
         )
       ).json();
-      console.log(data);
       // set state when the data received
       setCommuniques(data);
     };
@@ -84,14 +84,14 @@ function ProfilePage() {
         <Route path="editarpersona" element={<EditPerson/>} />
       </Routes>
     }
-    else if (location.pathname === "/profile/packages" && AuthService.getCurrentUser().role == 'ROLE_GUARD') {
+    else if (location.pathname === "/profile/createPackage" && AuthService.getCurrentUser().role == 'ROLE_GUARD') {
       return <Routes>
-        <Route path="packages" element={<CreatePackage/>} />
+        <Route path="createPackage" element={<CreatePackage/>} />
       </Routes>
     }
-    else if (location.pathname === "/profile/packages" && AuthService.getCurrentUser().role == 'ROLE_GUARD') {
+    else if (location.pathname === "/profile/editPackage" && AuthService.getCurrentUser().role == 'ROLE_GUARD') {
       return <Routes>
-        <Route path="packages" element={<CreatePackage/>} />
+        <Route path="editPackage" element={<EditPackage/>} />
       </Routes>
     }
   }

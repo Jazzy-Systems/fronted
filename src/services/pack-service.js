@@ -15,6 +15,15 @@ class PackageService {
     getAll() {
         return axios.get(API_URL, { headers: authHeader() })
     }
+    findByApartment(id){
+        return axios.get(API_URL + "all/" + id, { headers: authHeader() })
+    }
+    update(packageId,observation) {
+        return axios.put(API_URL + packageId, {
+            observation
+        }, { headers: authHeader() })
+    }
+
 }
 
 export default new PackageService();
