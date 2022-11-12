@@ -16,9 +16,22 @@ class PersonService {
         return axios.get(API_URL + "myprofile/" , { headers: authHeader() })
     }
 
-    updatePhone(phone){
-        console.log(authHeader())
-        return axios.put(API_URL + "update/" + phone, { headers: authHeader() })
+    updatePhone(phonee){
+        let personId = "";
+        let firstName = "";
+        let lastName = "";
+        let phone = phonee;
+        let dni = "";
+        let email = "";
+        return axios.put(API_URL + "update", {
+            personId,
+            firstName,
+            lastName,
+            phone,
+            email,
+            dni
+        }, { headers: authHeader() })
+
     }
 
 

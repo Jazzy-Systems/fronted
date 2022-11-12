@@ -22,7 +22,6 @@ const EditMyProfile = (props) => {
                     API_URL + "/api/v1/person/myprofile/", requestOptions
                 )
             ).json();
-            console.log(data)
             setPerson(data);
         };
         dataFetch();
@@ -34,25 +33,6 @@ const EditMyProfile = (props) => {
             ...person,
             [event.target.name]: event.target.value
         });
-    }
-
-    const handleFindBySesion = () => {
-        //e.preventDefault();
-        PersonService.findByProfile().then(
-            (response) => {
-                console.log(response.data.dni)
-                setPerson(response.data);
-            },
-            error => {
-                const resMessage =
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString();
-                alert(resMessage + "error");
-            }
-        );
     }
 
     const handleUpdatePhone = (e) => {
@@ -80,6 +60,7 @@ const EditMyProfile = (props) => {
 
     return (
         <div className='contenedor-form-edit'>
+             <TitleCard text="Editar Mi perfil" />
             <form className='form-register' onSubmit={handleUpdatePhone}>
                 <div className="form-floating" id="input-form">
                     <input type="text" name="firstName" className="form-control" id="floatingName" value={person.firstName}
@@ -105,6 +86,18 @@ const EditMyProfile = (props) => {
                     <input type="number" name="dni" className="form-control" id="floatingCedula" placeholder="Password" value={person.dni}
                         required></input>
                     <label className="form-label" htmlFor="floatingCedula">Cédula</label>
+                </div>
+                <div className="form-floating" id="input-form">
+                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
+                        name="newPassword"
+                        ></input>
+                    <label className="text-input" htmlFor="floatingPassword">Contraseña Nueva</label>
+                </div>
+                <div className="form-floating" id="input-form">
+                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
+                        name="newPassword"
+                        ></input>
+                    <label className="text-input" htmlFor="floatingPassword">Contraseña Actual</label>
                 </div>
                 <ButtonGreen id="submit-button" text="Guardar" type="Submit" />
             </form>
