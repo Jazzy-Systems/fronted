@@ -10,6 +10,7 @@ import authHeader from '../services/auth-header';
 import EditPerson from '../components/EditPerson';
 import CreatePackage from '../components/CreatePackage';
 import EditPackage from '../components/EditPackage';
+import PackageCard from '../components/PackageCard';
 
 
 function ProfilePage() {
@@ -92,6 +93,11 @@ function ProfilePage() {
     else if (location.pathname === "/profile/editPackage" && AuthService.getCurrentUser().role == 'ROLE_GUARD') {
       return <Routes>
         <Route path="editPackage" element={<EditPackage/>} />
+      </Routes>
+    }
+    else if (location.pathname === "/profile/myPackages" && AuthService.getCurrentUser().role == 'ROLE_RESIDENT') {
+      return <Routes>
+        <Route path="myPackages" element={<PackageCard/>} />
       </Routes>
     }
   }
