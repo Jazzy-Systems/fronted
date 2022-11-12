@@ -12,6 +12,16 @@ class PersonService {
         return axios.get(API_URL + "apart/" + id, { headers: authHeader() })
     }
 
+    findByProfile(){
+        return axios.get(API_URL + "myprofile/" , { headers: authHeader() })
+    }
+
+    updatePhone(phone){
+        console.log(authHeader())
+        return axios.put(API_URL + "update/" + phone, { headers: authHeader() })
+    }
+
+
     update(person) {
         let personId = person.personId;
         let firstName = person.firstName;

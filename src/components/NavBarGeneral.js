@@ -82,7 +82,7 @@ const NavBarGeneral = (props) => {
                         {communiqueByRol()}
                         {navBarRoutes()}
                         <li className="nav-item">
-                            <a className="nav-link" href={FRONT_URL + "/profile"}>{props.itemThree}</a>
+                            <a className="nav-link" href={FRONT_URL + "/profile/editProfile"}>{props.itemThree}</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href={FRONT_URL + "/login"}>Log Out</a>
