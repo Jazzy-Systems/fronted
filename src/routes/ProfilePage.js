@@ -11,6 +11,7 @@ import EditPerson from '../components/EditPerson';
 import CreatePackage from '../components/CreatePackage';
 import EditPackage from '../components/EditPackage';
 import PackageCard from '../components/PackageCard';
+import RegisterCard from '../components/RegisterCard';
 
 
 function ProfilePage() {
@@ -19,6 +20,7 @@ function ProfilePage() {
   let navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL;
   const [communiques, setCommuniques] = useState(null);
+  const [packages, setPackages] = useState(null);
 
   useEffect(() => {
     if (AuthService.getCurrentUser() == null) {
@@ -35,18 +37,32 @@ function ProfilePage() {
           API_URL + "/api/v1/communique/", requestOptions
         )
       ).json();
-      // set state when the data received
       setCommuniques(data);
     };
 
     dataFetch();
   }, [API_URL, navigate])
 
-
-
   useEffect(() => {
 
-  }, [])
+    if (AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
+    const requestOptions = {
+      method: 'GET',
+      headers: authHeader()
+    }
+    const dataFetch = async () => {
+      const data = await (
+        await fetch(
+          API_URL + "/api/v1/pack/mypacks", requestOptions
+        )
+      ).json();
+      setPackages(data);
+    };
+
+    dataFetch();
+    console.log(packages)
+}}, [API_URL, navigate])
+
 
   const currentRoleNavBar = () => {
     if (!(AuthService.getCurrentUser() == null)) {
@@ -75,9 +91,27 @@ function ProfilePage() {
         )
       }
     }
+    else if (location.pathname === "/profile/myPackages" && AuthService.getCurrentUser().role == 'ROLE_RESIDENT') {
+      if (packages) {
+        return (
+          <div className="profilePage-body">
+            {packages.map((elem) => {
+              return (
+                <PackageCard package={elem} />
+              );
+            })}
+          </div>
+        )
+      }
+    }
     else if (location.pathname === "/profile/createCommunique" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
       return <Routes>
         <Route path="createCommunique" element={<CreateCommunique/>} />
+      </Routes>
+    }
+    else if (location.pathname === "/profile/createPerson" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
+      return <Routes>
+        <Route path="createPerson" element={<RegisterCard/>} />
       </Routes>
     }
     else if (location.pathname === "/profile/editarpersona" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
@@ -93,11 +127,6 @@ function ProfilePage() {
     else if (location.pathname === "/profile/editPackage" && AuthService.getCurrentUser().role == 'ROLE_GUARD') {
       return <Routes>
         <Route path="editPackage" element={<EditPackage/>} />
-      </Routes>
-    }
-    else if (location.pathname === "/profile/myPackages" && AuthService.getCurrentUser().role == 'ROLE_RESIDENT') {
-      return <Routes>
-        <Route path="myPackages" element={<PackageCard/>} />
       </Routes>
     }
   }

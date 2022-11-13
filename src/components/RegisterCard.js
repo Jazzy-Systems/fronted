@@ -153,7 +153,7 @@ const Register = (props) => {
                     {vigilantContentVisible && <RegisterVigilant />}
                     <ButtonGreen id="submit-button" text="Registrarme" type="Submit" />
                     <p id="text-extra">¿Ya tienes una cuenta?<br></br>
-                        <button href={FRONT_URL + "/login"} onClick={props.fLogin}>Iniciar Sesión</button>
+                        <a href={FRONT_URL + "/login"} onClick={props.fLogin}>Iniciar Sesión</a>
                     </p>
                 </form>
             </div>

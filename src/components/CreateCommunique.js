@@ -10,15 +10,14 @@ const CreateCommunique = (props) => {
 
     const handleOnChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
-        console.log(form)
     }
 
     const newCommunique = (e) => {
         e.preventDefault();
-        console.log(form)
         communiqueService.save(form.nombre, form.descripcion, form.type).then(
             () => {
                 alert("Se ha publicado el comunicado, existosamente.")
+                window.location.reload(true);
             },
             error => {
                 setResMessage(

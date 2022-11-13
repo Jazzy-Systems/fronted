@@ -49,14 +49,21 @@ const NavBarGeneral = (props) => {
 
     const navBarRoutes = () => {
         if (props.itemTwo === "Paqueteria") {
-            return <li className="nav-item">
-                <a className="nav-link" href={FRONT_URL + "/profile/createPackage"}>{props.itemTwo}</a>
-            </li>
+            if(AuthService.getCurrentUser().role == 'ROLE_GUARD'){
+                return <li className="nav-item">
+                        <a className="nav-link" href={FRONT_URL + "/profile/createPackage"}>{props.itemTwo}</a>
+                       </li>                
+            }
+            if(AuthService.getCurrentUser().role == 'ROLE_RESIDENT'){
+                return <li className="nav-item">
+                        <a className="nav-link" href={FRONT_URL + "/profile/myPackages"}>{props.itemTwo}</a>
+                       </li>                
+            }
         } else if (props.itemTwo === "Gestion Usuarios") {
             return <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" id="dropDownUserOne" href="#dropDownUserTwo" data-bs-toggle="dropdown" aria-expanded="false" onClick={showDropDownUser}>{props.itemTwo}</a>
                 <ul className="dropdown-menu" id="dropDownUserTwo" data-bs-popper="static">
-                    <li><a className="dropdown-item" href={FRONT_URL + "/profile"}>Crear Persona</a></li>
+                    <li><a className="dropdown-item" href={FRONT_URL + "/profile/createPerson"}>Crear Persona</a></li>
                     <li><a className="dropdown-item" href={FRONT_URL + "/profile/editarpersona"}>Editar Persona</a></li>
                 </ul>
             </li>
@@ -75,7 +82,7 @@ const NavBarGeneral = (props) => {
                         {communiqueByRol()}
                         {navBarRoutes()}
                         <li className="nav-item">
-                            <a className="nav-link" href={FRONT_URL + "/profile/myPackages"}>{props.itemThree}</a>
+                            <a className="nav-link" href={FRONT_URL + "/profile"}>{props.itemThree}</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href={FRONT_URL + "/login"}>Log Out</a>
