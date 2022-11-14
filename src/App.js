@@ -11,6 +11,9 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+import CreatePqrs from './components/CreatePQRS.js';
+import ViewRequests from './components/ViewRequests.js';
+// Bootstrap CSS
 
 function App() {
   return (
@@ -25,6 +28,8 @@ function App() {
           <Route path="/profile/*" element={<ProfilePage />} />
           <Route path="/recoverpassword" element={<RecoverPassword />} />
           <Route path="/changepassword" element={<ChangePassword />} />
+          <Route path="/createpqrs" element={<CreatePqrs />} />
+          <Route path="/viewrequests" element={<ViewRequests />} />
         </Routes>
       </BrowserRouter>
     </div>
