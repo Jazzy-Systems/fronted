@@ -34,7 +34,7 @@ const RecoverPassword = (props) => {
 
     return (
         <div className='contenedor-createCommunique'>
-            <TitleCard text="Recuperar Contraseña" />
+            <TitleCard text="Cambiar Contraseña" />
             <form className='form-Communique' onSubmit={recoverPassword}>
                 <div className="form-floating" id="input-form">
                     <input type="email" name="email" className="form-control" id="floatingName" placeholder="name" value={form.email} onChange={handleOnChange} required></input>
