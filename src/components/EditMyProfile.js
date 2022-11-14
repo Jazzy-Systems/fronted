@@ -10,6 +10,7 @@ const EditMyProfile = (props) => {
 
     const [person, setPerson] = useState({ firstName: "" });
     const API_URL = process.env.REACT_APP_API_URL;
+    const FRONT_URL = process.env.REACT_APP_FRONT_URL;
 
     useEffect(() => {
         const requestOptions = {
@@ -87,19 +88,10 @@ const EditMyProfile = (props) => {
                         required></input>
                     <label className="form-label" htmlFor="floatingCedula">Cédula</label>
                 </div>
-                <div className="form-floating" id="input-form">
-                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
-                        name="newPassword"
-                        ></input>
-                    <label className="text-input" htmlFor="floatingPassword">Contraseña Nueva</label>
-                </div>
-                <div className="form-floating" id="input-form">
-                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
-                        name="newPassword"
-                        ></input>
-                    <label className="text-input" htmlFor="floatingPassword">Contraseña Actual</label>
-                </div>
                 <ButtonGreen id="submit-button" text="Guardar" type="Submit" />
+                <p id="text-extra"><br></br>
+                    <a href={FRONT_URL + "/recoverpassword"}>Cambiar contraseña</a><br></br><br></br>
+                </p>
             </form>
         </div>
     )
