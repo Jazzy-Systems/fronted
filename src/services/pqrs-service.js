@@ -14,9 +14,9 @@ class PqrsService {
             }, { headers: authHeader() })
     }
 
-    update(titleRequest, descriptionRequest, responseRequest, statusRequest, typeRequest) {
+    update(requestId, titleRequest, descriptionRequest, responseRequest, statusRequest, typeRequest) {
         return axios
-            .put(API_URL, {
+            .put(API_URL + requestId, {
                 titleRequest,
                 descriptionRequest,
                 responseRequest,
@@ -26,6 +26,10 @@ class PqrsService {
     }
 
     getAll() {
+        return axios.get(API_URL, { headers: authHeader() })
+    }
+
+    getMyPQRSs() {
         return axios.get(API_URL, { headers: authHeader() })
     }
 }

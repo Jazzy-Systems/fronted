@@ -12,7 +12,7 @@ import {
   Route,
 } from 'react-router-dom';
 import CreatePqrs from './components/CreatePQRS.js';
-import ViewRequests from './components/ViewRequests.js';
+import ViewRequests from './components/ViewPQRS.js';
 // Bootstrap CSS
 
 function App() {

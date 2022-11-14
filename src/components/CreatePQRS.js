@@ -62,8 +62,9 @@ const CreatePqrs = (props) => {
 
     if (typeRequests) {
         return (
-            <div className='contenedor-createCommunique'>
+            <div class='container-md justify-center'>
                 <TitleCard text="Realizar una PQRS" />
+                <label htmlFor="selector" className="form-label">Tipo</label>
                 <form className='form-Communique' onSubmit={newPQRS}>
                     <select required name="typeRequestName" className="form-select" id="type-selector" value={form.typeRequestName} onChange={handleOnChange}>
                         <option></option>
@@ -81,7 +82,6 @@ const CreatePqrs = (props) => {
                         <textarea type="text" name="descriptionRequest" className="form-control" id="floatingDescripcion" placeholder="descripcion" value={form.descriptionRequest} onChange={handleOnChange} required></textarea>
                         <label className="form-label" htmlFor="floatingInput">Descripcion</label>
                     </div>
-                    <label htmlFor="selector" className="form-label">Tipo</label>
 
                     <ButtonGreen id="submit-button" text="Crear" type="Submit" />
                 </form>
