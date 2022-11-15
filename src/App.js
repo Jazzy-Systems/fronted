@@ -5,6 +5,7 @@ import ProfilePage from './routes/ProfilePage.js';
 import RegisterUserPage from './routes/RegisterUserPage';
 import RecoverPassword from './components/RecoverPassword';
 import ChangePassword from './components/ChangePassword';
+import AboutUsPage from './routes/AboutUsPage';
 
 import {
   BrowserRouter,
@@ -30,6 +31,7 @@ function App() {
           <Route path="/changepassword" element={<ChangePassword />} />
           <Route path="/createpqrs" element={<CreatePqrs />} />
           <Route path="/viewrequests" element={<ViewRequests />} />
+          <Route path="/AboutUs" element={<AboutUsPage/>} />
         </Routes>
       </BrowserRouter>
     </div>
