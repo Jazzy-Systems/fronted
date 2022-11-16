@@ -19,11 +19,11 @@ function PQRScard(props) {
         }
     }
     const getState = () => {
-        if (props.package.received === true) {
-            return "Entregado"
+        if (props.request.statusRequest === true) {
+            return "Con respuesta"
         }
-        if (props.package.received === false) {
-            return "No Entregado"
+        if (props.request.statusRequest === false) {
+            return "Sin respuesta"
         }
     }
 
@@ -34,8 +34,8 @@ function PQRScard(props) {
                 <div className="col p-4 d-flex flex-column position-static" id="p-contentCard">
                     <strong className="d-inline-block mb-2 text-dark">Fecha de solicitud: {props.request.dateRequest}</strong>
                     <h2 className="mb-0" >Tipo paquete: {props.request.typeRequest.typeRequestName}</h2>
-                    <div className="mb-1 text-muted">Descripción: {props.request.requestDescription}</div>
-                    <p className="card-text" id="p-contentCard-text">Respuesta: {props.request.requestResponse}</p>
+                    <div className="mb-1 text-muted">Descripción: {props.request.descriptionRequest}</div>
+                    <p className="card-text" id="p-contentCard-text">Respuesta: {props.request.responseRequest}</p>
                     <div className='more-card'>
                         <div>
                             <ButtonGreen id="edit-card" text={"Estado: " + getState()} type="button" />
