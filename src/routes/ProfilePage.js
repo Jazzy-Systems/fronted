@@ -14,7 +14,7 @@ import EditMyProfile from '../components/EditMyProfile';
 import PackageCard from '../components/PackageCard';
 import RegisterCard from '../components/RegisterCard';
 import Footer from '../components/Footer.js';
-
+import PQRScard from '../components/PQRScard';
 
 function ProfilePage() {
 
@@ -23,7 +23,7 @@ function ProfilePage() {
   const API_URL = process.env.REACT_APP_API_URL;
   const [communiques, setCommuniques] = useState(null);
   const [packages, setPackages] = useState(null);
-
+  const [requests, setRequests] = useState(null);
   useEffect(() => {
     if (AuthService.getCurrentUser() == null) {
       //alert("No hay credenciales actuales o usted no ha iniciado sesión.")
@@ -66,6 +66,26 @@ function ProfilePage() {
     }
   }, [API_URL, navigate])
 
+  useEffect(() => {
+
+    if (AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
+      const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+      }
+      const dataFetch = async () => {
+        const data = await (
+          await fetch(
+            API_URL + "/api/v1/request/myallrequest", requestOptions
+          )
+        ).json();
+        setRequests(data);
+      };
+      dataFetch();
+    }
+  },
+    [API_URL, navigate
+    ])
 
   const currentRoleNavBar = () => {
     if (!(AuthService.getCurrentUser() == null)) {
@@ -137,6 +157,21 @@ function ProfilePage() {
         <Route path="editProfile" element={<EditMyProfile />} />
       </Routes>
     }
+    else if (location.pathname === "/profile/myallrequests" && AuthService.getCurrentUser().role == 'ROLE_RESIDENT') {
+      if (requests) {
+        return (
+          <div className="profilePage-body">
+            {requests.map((elem) => {
+              return (
+                <PQRScard request={elem
+                } />
+              );
+            })
+            }
+          </div>
+        )
+      }
+    }
   }
 
   return (
@@ -145,9 +180,9 @@ function ProfilePage() {
       <div className="profilePage-body">
         {contentPage()}
       </div>
-      <Footer/>
+      <Footer />
     </div>
-    
+
   );
 }
 
