@@ -7,7 +7,7 @@ const Home = (props) => {
     return (
         <div className='contenedor-form-home'>
             <form className='form-home'>
-                <img className="mb-4" src={require('../images/Logo.png')} alt="" width="120" height="120" />
+                <img className="mb-4" src={require('../images/Logo.png')} alt="" width="80" height="80" />
                 <TitleCard text="Escoja Su Rol" />
                 <ButtonGreen id="choose-rol" text="Administrador" type="button" />
                 <ButtonGreen id="choose-rol" text="Residente" type="button" fLogin={props.fLogin} />

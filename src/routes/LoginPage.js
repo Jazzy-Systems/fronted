@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/generalPages.css';
 import Login from '../components/LoginCard';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer.js';
 
 function LoginPage() {
 
@@ -20,8 +21,11 @@ function LoginPage() {
   };
 
   return (
-    <div className="generalPage-container">
-      <Login fRecovered={goRecovered} fRegister={goRegister} fProfile={goProfile} />
+    <div>
+      <div className="generalPage-container">
+        <Login fRecovered={goRecovered} fRegister={goRegister} fProfile={goProfile} />
+      </div>
+      <Footer/>
     </div>
   );
 }

@@ -4,6 +4,8 @@ import Register from '../components/RegisterCard';
 import { useNavigate } from 'react-router-dom';
 import NavBarGeneral from '../components/NavBarGeneral';
 import AuthService from "../services/auth.service";
+import Footer from '../components/Footer.js';
+
 
 function RegisterPage() {
 
@@ -30,6 +32,7 @@ function RegisterPage() {
       <div className="register-body">
         <Register fLogin={goLoginUser} />
       </div>
+      <Footer/>
     </div>
   );
 }

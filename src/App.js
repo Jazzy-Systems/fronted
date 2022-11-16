@@ -6,6 +6,9 @@ import RegisterUserPage from './routes/RegisterUserPage';
 import RecoverPassword from './components/RecoverPassword';
 import ChangePassword from './components/ChangePassword';
 import AboutUsPage from './routes/AboutUsPage';
+import FaqsPage from './routes/FaqsPage.js';
+import PoliciesPage from './routes/PoliciesPage.js';
+import ContactPage from './routes/ContactPage.js';
 
 import {
   BrowserRouter,
@@ -32,6 +35,9 @@ function App() {
           <Route path="/createpqrs" element={<CreatePqrs />} />
           <Route path="/viewrequests" element={<ViewRequests />} />
           <Route path="/AboutUs" element={<AboutUsPage/>} />
+          <Route path="/FAQS" element={<FaqsPage/>} />
+          <Route path="/Policies" element={<PoliciesPage/>} />
+          <Route path="/Contact" element={<ContactPage/>} />
         </Routes>
       </BrowserRouter>
     </div>

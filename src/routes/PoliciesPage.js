@@ -1,17 +1,18 @@
 import React from 'react';
 import '../styles/generalPages.css';
-import RequestRecoverPassword from '../components/RequestRecoverPassword';
 import Footer from '../components/Footer.js';
+import Policies from '../components/Policies.js';
 
-function RecoveredPage() {
+const PoliciesPage = (props) =>{
+
   return (
-    <div>
+    <div>      
       <div className="generalPage-container">
-        <RequestRecoverPassword />
+        <Policies/>
       </div>
       <Footer/>
     </div>
   );
 }
 
-export default RecoveredPage;
+export default PoliciesPage;

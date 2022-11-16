@@ -13,6 +13,7 @@ import EditPackage from '../components/EditPackage';
 import EditMyProfile from '../components/EditMyProfile';
 import PackageCard from '../components/PackageCard';
 import RegisterCard from '../components/RegisterCard';
+import Footer from '../components/Footer.js';
 
 
 function ProfilePage() {
@@ -144,7 +145,9 @@ function ProfilePage() {
       <div className="profilePage-body">
         {contentPage()}
       </div>
+      <Footer/>
     </div>
+    
   );
 }
 
