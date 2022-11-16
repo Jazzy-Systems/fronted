@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import '../styles/recoveredCard.css';
 import ButtonGreen from './ButtonGreen';
 import TitleCard from './TitleCard';
-class RecoveredCard extends Component {
-    render() {
-
+const RecoveredCard = () => {
         return (
             <div className='contenedor-form-recovered'>
                 <form className='form-recovered'>
@@ -18,7 +16,6 @@ class RecoveredCard extends Component {
                 </form>
             </div>
         )
-    }
 }
 
 export default RecoveredCard;

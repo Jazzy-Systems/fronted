@@ -6,7 +6,7 @@ import authHeader from '../services/auth-header';
 
 const ViewPQRS = (props) => {
   const [resMessage, setResMessage] = useState(null);
-  const [requests, setRequests] = useState();
+  const [requests, setRequests] = useState(props.pqrs);
   const [request, setRequest] = useState();
   const [showEditForm, setShowEditForm] = useState(false);
   const API_URL = process.env.REACT_APP_API_URL;

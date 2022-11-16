@@ -9,16 +9,14 @@ const RequestRecoverPassword = (props) => {
 
     const handleOnChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
-        console.log(form)
     }
 
     const [resMessage, setResMessage] = useState(null);
     const requestRecoveryPassword = (e) => {
         e.preventDefault();
-        console.log(form)
         AuthService.requestRecoveryPassword(form.email).then(
             () => {
-                alert("Se ha cambiado la contraseña")
+                alert("A su correo llegara")
             },
             error => {
                 setResMessage(

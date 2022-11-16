@@ -17,6 +17,7 @@ import {
 } from 'react-router-dom';
 import CreatePqrs from './components/CreatePQRS.js';
 import ViewRequests from './components/ViewPQRS.js';
+import RequestRecoverPassword from './components/RequestRecoverPassword.js';
 // Bootstrap CSS
 
 function App() {
@@ -28,12 +29,10 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/registerUser" element={<RegisterUserPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/recover" element={<RecoveredPage />} />
+          <Route path="/recover" element={<RequestRecoverPassword/>} />
           <Route path="/profile/*" element={<ProfilePage />} />
           <Route path="/recoverpassword" element={<RecoverPassword />} />
           <Route path="/changepassword" element={<ChangePassword />} />
-          <Route path="/createpqrs" element={<CreatePqrs />} />
-          <Route path="/viewrequests" element={<ViewRequests />} />
           <Route path="/AboutUs" element={<AboutUsPage/>} />
           <Route path="/FAQS" element={<FaqsPage/>} />
           <Route path="/Policies" element={<PoliciesPage/>} />

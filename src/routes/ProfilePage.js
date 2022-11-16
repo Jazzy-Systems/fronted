@@ -15,6 +15,10 @@ import PackageCard from '../components/PackageCard';
 import RegisterCard from '../components/RegisterCard';
 import Footer from '../components/Footer.js';
 import PQRScard from '../components/PQRScard';
+import CreatePqrs from '../components/CreatePQRS';
+import ViewPQRS from '../components/ViewPQRS';
+import TitleCard from '../components/TitleCard';
+import ButtonGreen from '../components/ButtonGreen';
 
 function ProfilePage() {
 
@@ -24,6 +28,7 @@ function ProfilePage() {
   const [communiques, setCommuniques] = useState(null);
   const [packages, setPackages] = useState(null);
   const [requests, setRequests] = useState(null);
+  
   useEffect(() => {
     if (AuthService.getCurrentUser() == null) {
       //alert("No hay credenciales actuales o usted no ha iniciado sesión.")
@@ -86,15 +91,33 @@ function ProfilePage() {
   },
     [API_URL, navigate
     ])
+  
+    useEffect(() => {
+      if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
+      const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+      }
+      const dataFetch = async () => {
+        const data = await (
+          await fetch(
+            API_URL + "/api/v1/request/", requestOptions
+          )
+        ).json();
+        setRequests(data);
+      };
+      dataFetch();
+    }
+    }, [API_URL]);
 
   const currentRoleNavBar = () => {
     if (!(AuthService.getCurrentUser() == null)) {
       if (AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
-        return <NavBarGeneral itemOne='Comunicados' itemTwo='Paqueteria' itemThree='Mi perfil' itemFour={AuthService.logout} />
+        return <NavBarGeneral itemOne='Comunicados' itemTwo='Paqueteria' itemThree='Mi perfil' itemFour='PQRS' itemFive={AuthService.logout}/>
       } else if (AuthService.getCurrentUser().role === 'ROLE_GUARD') {
-        return <NavBarGeneral itemOne='Comunicados' itemTwo='Paqueteria' itemFour={AuthService.logout} />
+        return <NavBarGeneral itemOne='Comunicados' itemTwo='Paqueteria' itemFive={AuthService.logout} />
       } else if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
-        return <NavBarGeneral itemOne='Comunicados' itemTwo='Gestion Usuarios' itemFour={AuthService.logout} />
+        return <NavBarGeneral itemOne='Comunicados' itemTwo='Gestion Usuarios' itemFour='PQRS' itemFive={AuthService.logout}/>
       }
     }
 
@@ -130,6 +153,11 @@ function ProfilePage() {
     else if (location.pathname === "/profile/createCommunique" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
       return <Routes>
         <Route path="createCommunique" element={<CreateCommunique />} />
+      </Routes>
+    }
+    else if (location.pathname === "/profile/viewRequests" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
+      return <Routes>
+        <Route path="viewRequests" element={<ViewPQRS pqrs = {requests}/>} />
       </Routes>
     }
     else if (location.pathname === "/profile/createPerson" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
@@ -171,6 +199,11 @@ function ProfilePage() {
           </div>
         )
       }
+    }
+    else if (location.pathname === "/profile/createpqrs" && AuthService.getCurrentUser().role == 'ROLE_RESIDENT') {
+      return <Routes>
+        <Route path="/createpqrs" element={<CreatePqrs/>} />
+      </Routes>
     }
   }
 

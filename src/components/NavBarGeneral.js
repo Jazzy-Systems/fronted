@@ -4,37 +4,11 @@ import AuthService from "../services/auth.service";
 
 const NavBarGeneral = (props) => {
     const FRONT_URL = process.env.REACT_APP_FRONT_URL;
-
-    const showDropDownCommunique = () => {
-        let elementOne = document.getElementById("dropDownComOne");
-        let elementTwo = document.getElementById("dropDownComTwo");
-
-        if (elementOne.classList.contains("show")) {
-            elementOne.classList.remove("show");
-            elementTwo.classList.remove("show");
-        } else {
-            elementOne.classList.add("show");
-            elementTwo.classList.add("show");
-        }
-        console.log(elementOne.classList)
-    }
-    const showDropDownUser = () => {
-        let elementOne = document.getElementById("dropDownUserOne");
-        let elementTwo = document.getElementById("dropDownUserTwo");
-
-        if (elementOne.classList.contains("show")) {
-            elementOne.classList.remove("show");
-            elementTwo.classList.remove("show");
-        } else {
-            elementOne.classList.add("show");
-            elementTwo.classList.add("show");
-        }
-        console.log(elementOne.classList)
-    }
+    
     const communiqueByRol = () => {
         if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
             return <li className="nav-item dropdown" id="navegar">
-                <a className="nav-link dropdown-toggle" id="dropDownComOne" href="#navegar" data-bs-toggle="dropdown" aria-expanded="false" onClick={showDropDownCommunique}>{props.itemOne}</a>
+                <a className="nav-link dropdown-toggle" id="dropDownComOne" href="#navegar" data-bs-toggle="dropdown" aria-expanded="false">{props.itemOne}</a>
                 <ul className="dropdown-menu" id="dropDownComTwo" data-bs-popper="static">
                     <li><a className="dropdown-item" href={FRONT_URL + "/profile"}>Ver comunicados</a></li>
                     <li><a className="dropdown-item" href={FRONT_URL + "/profile/createCommunique"} > Crear Comunicado</a></li>
@@ -44,6 +18,22 @@ const NavBarGeneral = (props) => {
             return <li className="nav-item">
                 <a className="nav-link" href={FRONT_URL + "/profile"} > {props.itemOne}</a>
             </li >
+        }
+    }
+
+    const PQRSByRol = () => {
+        if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
+            return <li className="nav-item">
+            <a className="nav-link" href={FRONT_URL + "/profile/viewRequests"}>{props.itemFour}</a>
+           </li>
+        } else if(AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
+            return <li className="nav-item dropdown" id="navegar">
+            <a className="nav-link dropdown-toggle" id="dropDownComOne" href="#navegar" data-bs-toggle="dropdown" aria-expanded="false">{props.itemFour}</a>
+            <ul className="dropdown-menu" id="dropDownComTwo" data-bs-popper="static">
+                <li><a className="dropdown-item" href={FRONT_URL + "/profile/createpqrs"}>Crear PQRS</a></li>
+                <li><a className="dropdown-item" href={FRONT_URL + "/profile/myallrequests"} > Ver mis PQRS</a></li>
+            </ul >
+        </li >
         }
     }
 
@@ -61,7 +51,7 @@ const NavBarGeneral = (props) => {
             }
         } else if (props.itemTwo === "Gestion Usuarios") {
             return <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" id="dropDownUserOne" href="#dropDownUserTwo" data-bs-toggle="dropdown" aria-expanded="false" onClick={showDropDownUser}>{props.itemTwo}</a>
+                <a className="nav-link dropdown-toggle" id="dropDownUserOne" href="#dropDownUserTwo" data-bs-toggle="dropdown" aria-expanded="false">{props.itemTwo}</a>
                 <ul className="dropdown-menu" id="dropDownUserTwo" data-bs-popper="static">
                     <li><a className="dropdown-item" href={FRONT_URL + "/profile/createPerson"}>Crear Persona</a></li>
                     <li><a className="dropdown-item" href={FRONT_URL + "/profile/editarpersona"}>Editar Persona</a></li>
@@ -84,6 +74,7 @@ const NavBarGeneral = (props) => {
                         <li className="nav-item">
                             <a className="nav-link" href={FRONT_URL + "/profile/editProfile"}>{props.itemThree}</a>
                         </li>
+                        {PQRSByRol()}
                         <li className="nav-item">
                             <a className="nav-link" href={FRONT_URL + "/login"}>Log Out</a>
                         </li>

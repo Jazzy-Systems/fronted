@@ -64,7 +64,7 @@ const LoginCard = (props) => {
                 <ButtonGreen id="submit-button" text="Entrar" type="Submit" />
                 <p id="text-extra">¿No tienes una cuenta?<br></br>
                     <a href={FRONT_URL + "/registerUser"} onClick={props.fRegister}>Registrarse</a><br></br><br></br>
-                    <a href={FRONT_URL + "/recoverpassword"} onClick={props.fRecovered}>¿Olvidaste tu contraseña?</a>
+                    <a href={FRONT_URL + "/recover"} onClick={props.fRecovered}>¿Olvidaste tu contraseña?</a>
                 </p>
             </form>
         </div>
