@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import '../styles/recoveredCard.css';
 import ButtonGreen from './ButtonGreen';
 import TitleCard from './TitleCard';
+import { useNavigate } from 'react-router-dom';
+
 const RecoveredCard = () => {
-        return (
+        
+    let navigate = useNavigate();
+
+    const goRecoverPassword = () => {
+        navigate('/registerUser');
+    };    
+    return (
             <div className='contenedor-form-recovered'>
-                <form className='form-recovered'>
+                <form className='form-recovered' onSubmit={goRecoverPassword}>
                     <TitleCard text="Recuperar Contraseña"/>
                     <div className="form-floating" id="input-form">
                         <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" required></input>
