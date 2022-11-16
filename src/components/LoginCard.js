@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/loginCard.css';
+import '../styles/basic.css';
 import ButtonGreen from './ButtonGreen';
 import TitleCard from './TitleCard';
 
@@ -43,8 +43,8 @@ const LoginCard = (props) => {
     }
 
     return (
-        <div className='contenedor-form-login'>
-            <form onSubmit={handleSubmit} className='form-login'>
+        <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
+            <form onSubmit={handleSubmit} className='form-login' id="form">
                 <img className="mb-4" src={require('../images/Logo.png')} alt="" width="120" height="120" />
                 <TitleCard text="Login" />
                 <div className="form-floating" id="input-form">

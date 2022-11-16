@@ -1,22 +1,26 @@
 import { useState } from 'react';
-import TitleCard from './TitleCard';
 import ButtonGreen from './ButtonGreen';
-import '../styles/createCommunique.css';
+import '../styles/basic.css';
 import AuthService from "../services/auth.service";
+import AlertNavigate from './AlertNavigate';
 
 const RequestRecoverPassword = (props) => {
     const [form, setForm] = useState({ email: "" });
+    const [resMessage, setResMessage] = useState(null);
+    const [success, setSuccess] = useState(null);
+    const [navigateTo, setNavigateTo] = useState("/")
 
     const handleOnChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    const [resMessage, setResMessage] = useState(null);
     const requestRecoveryPassword = (e) => {
         e.preventDefault();
         AuthService.requestRecoveryPassword(form.email).then(
             () => {
-                alert("A su correo llegara")
+                setResMessage("Se ha enviado al correo los pasos para recuperar la contraseña.");
+                setSuccess(true)
+                setNavigateTo("/recoverPassword")
             },
             error => {
                 setResMessage(
@@ -25,24 +29,26 @@ const RequestRecoverPassword = (props) => {
                         error.response.data.message) ||
                     error.message ||
                     error.toString());
+                setSuccess(false);
+                setNavigateTo("/")
             }
         );
     }
 
     return (
-        <div className='contenedor-createCommunique'>
-            <TitleCard text="Change Password" />
-            <form className='form-Communique' onSubmit={requestRecoveryPassword}>
+        <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
+            <form className='container d-flex flex-column' id="form" onSubmit={requestRecoveryPassword} >
+                <h3 className='mx-auto flex align-center fw-bold' id="title">Enviar correo electrónico para recuperar contraseña</h3>
                 <div className="form-floating" id="input-form">
                     <input type="email" name="email" className="form-control" id="floatingName" placeholder="name" value={form.email} onChange={handleOnChange} required></input>
                     <label className="form-label" htmlFor="floatingInput">Email</label>
                 </div>
-                <ButtonGreen id="submit-button" text="Recuperar contraseña" type="Submit" />
-            </form>
-            <div>
-                <span>{resMessage}</span>
-            </div>
-        </div>
+                <div className="mx-auto my-auto">
+                    <ButtonGreen id="submit-button" text="Recuperar contraseña" type="Submit" />
+                </div>
+            </form >
+            {success != null && (<AlertNavigate success={success} resMessage={resMessage} navigateTo={navigateTo} />)}
+        </div >
     )
 }
 

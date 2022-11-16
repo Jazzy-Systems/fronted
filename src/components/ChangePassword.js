@@ -38,18 +38,18 @@ const ChangePassword = (props) => {
         <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
             <form className='container d-flex flex-column' id="form" onSubmit={changePassword}>
                 <h3 className='mx-auto flex align-center fw-bold' id="title">Cambiar contraseña</h3>
-                <div className="form-floating d-flex mb-3" >
+                <div className="form-floating" id="input-form">
                     <input type="email" name="email" className="form-control" id="floatingName" placeholder="name" value={form.email} onChange={handleOnChange} required></input>
                     <label className="form-label" htmlFor="floatingInput">Email</label>
                 </div>
-                <div className="form-floating d-flex mb-3">
+                <div className="form-floating" id="input-form">
                     <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
                         name="currentPassword"
                         value={form.currentPassword}
                         onChange={handleOnChange} required></input>
                     <label className="form-label" htmlFor="floatingPassword">Contraseña actual</label>
                 </div>
-                <div className="form-floating d-flex mb-3">
+                <div className="form-floating" id="input-form">
                     <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
                         name="newPassword"
                         value={form.newPassword}
@@ -61,7 +61,7 @@ const ChangePassword = (props) => {
                 </div>
 
             </form>
-            {success != null && (<AlertNavigate success={success} resMessage={resMessage} navigate='/profile' />)}
+            {success != null && (<AlertNavigate success={success} resMessage={resMessage} navigateTo='/profile' />)}
         </div>
     )
 }

@@ -6,9 +6,9 @@
 }
 
 #input-form {
-    width: 300px;
-    height: 60px;
-    margin: 15px;
+    width: 20em;
+    height: 3em;
+    margin: 1em;
 }
 
 input {
@@ -18,7 +18,7 @@ input {
 
 .form-control {
     background-color: #F3F2F4;
-    border-radius: 18px;
+    border-radius: 5em;
 }
 
 .text-input {
@@ -151,4 +151,9 @@ input {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+#footer {
+    position: relative;
+    bottom: 0;
 }

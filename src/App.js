@@ -1,6 +1,5 @@
 import RegisterPage from './routes/RegisterPage.js';
 import LoginPage from './routes/LoginPage.js';
-import RecoveredPage from './routes/RecoveredPage.js';
 import ProfilePage from './routes/ProfilePage.js';
 import RegisterUserPage from './routes/RegisterUserPage';
 import RecoverPassword from './components/RecoverPassword';
@@ -15,10 +14,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import CreatePqrs from './components/CreatePQRS.js';
-import ViewRequests from './components/ViewPQRS.js';
 import RequestRecoverPassword from './components/RequestRecoverPassword.js';
-// Bootstrap CSS
 
 function App() {
   return (
@@ -29,14 +25,14 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/registerUser" element={<RegisterUserPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/recover" element={<RequestRecoverPassword/>} />
+          <Route path="/recover" element={<RequestRecoverPassword />} />
           <Route path="/profile/*" element={<ProfilePage />} />
           <Route path="/recoverpassword" element={<RecoverPassword />} />
           <Route path="/changepassword" element={<ChangePassword />} />
-          <Route path="/AboutUs" element={<AboutUsPage/>} />
-          <Route path="/FAQS" element={<FaqsPage/>} />
-          <Route path="/Policies" element={<PoliciesPage/>} />
-          <Route path="/Contact" element={<ContactPage/>} />
+          <Route path="/AboutUs" element={<AboutUsPage />} />
+          <Route path="/FAQS" element={<FaqsPage />} />
+          <Route path="/Policies" element={<PoliciesPage />} />
+          <Route path="/Contact" element={<ContactPage />} />
         </Routes>
       </BrowserRouter>
     </div>

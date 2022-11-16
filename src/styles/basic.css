@@ -7,7 +7,7 @@
     border: 0.4em solid #03989E;
     border-radius: 2em;
     padding-top: 1.5em;
-    padding-bottom: 2em;
+    padding-bottom: 2.5rem;
     padding-left: 2.5em;
     padding-right: 2.5em;
 }
@@ -18,5 +18,31 @@
 }
 
 #form {
-    width: 100% !important
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#submit-button {
+    margin-top: 1em;
+    margin-bottom: 0.7em;
+    border-radius: 1.5em;
+    border-color: #2DC4B5;
+    background-color: #2DC4B5;
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+#error-button {
+    margin-top: 1em;
+    margin-bottom: 0.7em;
+    border-radius: 1.5em;
+    border-color: #be132a;
+    background-color: #be132a;
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
 }
