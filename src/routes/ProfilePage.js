@@ -114,7 +114,7 @@ function ProfilePage() {
       } else if (AuthService.getCurrentUser().role === 'ROLE_GUARD') {
         return <NavBarGeneral itemOne='Comunicados' itemTwo='Paqueteria' itemFive={AuthService.logout} />
       } else if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
-        return <NavBarGeneral itemOne='Comunicados' itemTwo='Gestion Usuarios' itemFour='PQRS' itemFive={AuthService.logout}/>
+        return <NavBarGeneral itemOne='Comunicados' itemTwo='Gestion Usuarios' itemThree='Mi perfil' itemFour='PQRS' itemFive={AuthService.logout}/>
       }
     }
 
