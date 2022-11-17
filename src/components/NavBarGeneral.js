@@ -40,9 +40,13 @@ const NavBarGeneral = (props) => {
     const navBarRoutes = () => {
         if (props.itemTwo === "Paqueteria") {
             if(AuthService.getCurrentUser().role == 'ROLE_GUARD'){
-                return <li className="nav-item">
-                        <a className="nav-link" href={FRONT_URL + "/profile/createPackage"}>{props.itemTwo}</a>
-                       </li>                
+                return <li className="nav-item dropdown" id="navegar">
+                    <a className="nav-link dropdown-toggle" id="dropDownComOne" href="#navegar" data-bs-toggle="dropdown" aria-expanded="false">{props.itemTwo}</a>
+                    <ul className="dropdown-menu" id="dropDownComTwo" data-bs-popper="static">
+                        <li><a className="dropdown-item" href={FRONT_URL + "/profile/createPackage"}>Crear paquete</a></li>
+                        <li><a className="dropdown-item" href={FRONT_URL + "/profile/editPackage"} >Editar paquete</a></li>
+                    </ul >
+                </li >          
             }
             if(AuthService.getCurrentUser().role == 'ROLE_RESIDENT'){
                 return <li className="nav-item">

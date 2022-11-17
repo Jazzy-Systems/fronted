@@ -17,8 +17,6 @@ import Footer from '../components/Footer.js';
 import PQRScard from '../components/PQRScard';
 import CreatePqrs from '../components/CreatePQRS';
 import ViewPQRS from '../components/ViewPQRS';
-import TitleCard from '../components/TitleCard';
-import ButtonGreen from '../components/ButtonGreen';
 
 function ProfilePage() {
 
@@ -30,7 +28,7 @@ function ProfilePage() {
   const [requests, setRequests] = useState(null);
   
   useEffect(() => {
-    if (AuthService.getCurrentUser() == null) {
+    if (AuthService.getCurrentUser() === null) {
       //alert("No hay credenciales actuales o usted no ha iniciado sesión.")
       navigate("/login")
     }
@@ -67,7 +65,6 @@ function ProfilePage() {
       };
 
       dataFetch();
-      console.log(packages)
     }
   }, [API_URL, navigate])
 
