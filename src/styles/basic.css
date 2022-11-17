@@ -8,6 +8,14 @@
     padding-right: 2.5em;
 }
 
+#create-package {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    padding-top: 1.5em;
+    padding-bottom: 2.5rem;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+}
+
 #login {
     position: absolute;
     top: 50%;

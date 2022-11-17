@@ -50,6 +50,7 @@ input {
 
 .form-label,
 .form-select {
+    width: 17em;
     font-size: 18px;
     font-weight: 600;
 }

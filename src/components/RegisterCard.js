@@ -1,17 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import '../styles/registerCard.css';
+import '../styles/basic.css';
 import ButtonGreen from './ButtonGreen';
 import RegisterResident from './RegisterResident';
 import RegisterVigilant from './RegisterVigilant';
 import AuthService from '../services/auth.service';
 import authHeader from '../services/auth-header';
-import TitleCard from './TitleCard';
 
 
 const Register = (props) => {
-    const FRONT_URL = process.env.REACT_APP_FRONT_URL;
     let navigate = useNavigate();
     //Uso de estados para renderizar el formulario según el rol escogido
     const [rolNamed, setRol] = useState("Seleccione un rol");
@@ -110,10 +108,10 @@ const Register = (props) => {
 
     if (roles) {
         return (
-            <div className='contenedor-form-register'>
-                <form className='form-register' onSubmit={handleRegister2}>
+            <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
+                <form className='container d-flex flex-column' id="form" onSubmit={handleRegister2}>
                     <img className="mb-4" src={require('../images/Logo.png')} alt="" width="120" height="120" />
-                    <TitleCard text="Registro" />
+                    <h3 className='mx-auto flex align-center fw-bold' id="title">Registro</h3>
                     <div className="form-floating" id="input-form">
                         <input type="name" name="nombre" className="form-control" id="floatingName" placeholder="name" value={form.name} onChange={handleOnChange2} required></input>
                         <label className="form-label" htmlFor="floatingInput">Nombres</label>
@@ -134,27 +132,21 @@ const Register = (props) => {
                         <input type="number" name="cedula" className="form-control" id="floatingCedula" placeholder="Password" value={form.cedula} onChange={handleOnChange2} required></input>
                         <label className="form-label" htmlFor="floatingCedula">Cedula</label>
                     </div>
-                    <div className="col-md-5">
-                        <label htmlFor="selector" className="form-label">Seleccione rol</label>
-                        <select required className="form-select" id="rol-selector" value={rolNamed} onChange={handleOnChange}>
-                            <option></option>
-
-                            {roles.map((role) => (
-                                <option value={role.roleName}>
-                                    {role.roleName}
-                                </option>
-                            ))}
-                        </select>
-                        <div className="invalid-feedback">
-                            Seleccione un rol por favor.
-                        </div>
+                    <label htmlFor="rol-selector" className="form-label">Seleccione rol</label>
+                    <select required className="form-select" id="rol-selector" value={rolNamed} aria-label="Seleccionar Rol" onChange={handleOnChange}>
+                        <option>Seleccione el Rol</option>
+                        {roles.map((role) => (
+                            <option value={role.roleName}>
+                                {role.roleName}
+                            </option>
+                        ))}
+                    </select>
+                    <div className="invalid-feedback">
+                        Seleccione un rol por favor.
                     </div>
                     {residentContentVisible && <RegisterResident />}
                     {vigilantContentVisible && <RegisterVigilant />}
-                    <ButtonGreen id="submit-button" text="Registrarme" type="Submit" />
-                    <p id="text-extra">¿Ya tienes una cuenta?<br></br>
-                        <a href={FRONT_URL + "/login"} onClick={props.fLogin}>Iniciar Sesión</a>
-                    </p>
+                    <ButtonGreen id="submit-button" text="Registrar persona" type="Submit" />
                 </form>
             </div>
         )
