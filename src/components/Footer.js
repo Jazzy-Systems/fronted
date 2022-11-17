@@ -21,7 +21,7 @@ const Footer = (props) => {
     };
 
     return (
-        <footer className="d-flex justify-content-around flex-wrap align-items-center py-3 my-4 border-top bg-dark px-4" id = "footer">
+        <footer className="d-flex justify-content-around flex-wrap align-items-center py-3 my-4 border-top bg-dark px-4" id="footer">
             <p className="col-md-4 mb-0 text-light h4">© 2022 Jazzy Systems</p>
 
             <a href="/" className="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -32,7 +32,7 @@ const Footer = (props) => {
                 <li className="nav-item"><a href={goAboutUs()} className="nav-link px-2 text-light"> Sobre Nosotros</a></li>
                 <li className="nav-item"><a href={goFaqs()} className="nav-link px-2 text-light">FAQs</a></li>
                 <li className="nav-item"><a href={goConctact()} className="nav-link px-2 text-light">Contactanos</a></li>
-                <li className="nav-item"><a href={goPolicies()} className="nav-link px-2 text-light">Politca y Privacidad</a></li>
+                <li className="nav-item"><a href={goPolicies()} className="nav-link px-2 text-light">Política y Privacidad</a></li>
             </ul>
         </footer>
     )
