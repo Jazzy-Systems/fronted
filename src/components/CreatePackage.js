@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import ButtonGreen from './ButtonGreen';
+import '../styles/editPersonCard.css';
 import '../styles/basic.css';
 import authHeader from '../services/auth-header';
 import PersonService from '../services/person-service';
@@ -69,7 +70,49 @@ const CreatePackage = (props) => {
       }
     }
   }
+  const showContentPackage = () => {
 
+    if (Object.keys(persons).length > 0) {
+      return <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
+        <form className='container d-flex flex-column' onSubmit={handleRegister2}>
+          <div className="form-floating" id="input-form">
+            <input type="text" name="messengerName" className="form-control" id="floatingName" value={packages.messengerName}
+              onChange={handleOnChange} required></input>
+            <label className="form-label" htmlFor="floatingmessengerName">Nombre mensajero</label>
+          </div>
+          <div className="form-floating" id="input-form">
+            <input type="text" name="typePack" className="form-control" id="floatingLastNames" placeholder="lastname"
+              value={packages.typePack} onChange={handleOnChange} required></input>
+            <label className="form-label" htmlFor="floatingTypePack">Tipo paquete</label>
+          </div>
+          <div className="form-floating" id="input-form">
+            <input type="text" name="observation" className="form-control" id="floatingEmail"
+              value={packages.observation} onChange={handleOnChange} required></input>
+            <label className="form-label" htmlFor="floatingObservation">Observaciones</label>
+          </div>
+
+          <div className="col-md-5">
+            <label htmlFor="selector" className="form-label">Residente asignado al paquete</label>
+            <select required className="form-select" id="rol-selector" value={person.id} onChange={(e) => setPerson(e.target.value)}>
+              <option></option>
+              {persons.map((person) => (
+                <option value={person.firstName + " " + person.lastName}>
+                  {person.firstName + " " + person.lastName}
+                </option>
+              ))}
+            </select>
+            <div className="invalid-feedback">
+              Seleccione un residente por favor
+            </div>
+          </div>
+
+          <ButtonGreen id="submit-button" text="Guardar Paquete" type="Submit" />
+        </form>
+      </div>
+
+    }
+
+  }
   const handleRegister2 = (e) => {
     e.preventDefault();
     let messengerName = e.target[0].value;
@@ -93,17 +136,17 @@ const CreatePackage = (props) => {
             error.response.data.message) ||
           error.message ||
           error.toString();
-        alert("Ha ocurrido un error,por favor revise los datos ingresados." + resMessage)
+        alert("Ha ocurrido un error,por favor revise los datos ingresados" + resMessage)
       }
     );
   }
 
   if (apartments) {
     return (
-      <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
-        <form className='form-find-dni' onSubmit={handleFindByApartment}>
+      <div className='card container-sm d-flex justify-content-center align-items-center col-auto my-5 py-3' id="card">
+        <form className='container d-flex flex-column' onSubmit={handleFindByApartment}>
           <div className="col-md-7">
-            < label htmlFor="selector" className="form-label" > Torre - Apartamento</label >
+            <label htmlFor="selector" className="form-label">Torre-Apartamento</label>
             <select required className="form-select" id="rol-selector" value={apartment} onChange={(e) => setApartment(e.target.value)}>
               <option></option>
               {apartments.map((apartment) => (
@@ -115,46 +158,11 @@ const CreatePackage = (props) => {
             <div className="invalid-feedback">
               Seleccione Torre-Apartamento por favor.
             </div>
-          </div >
+          </div>
           <ButtonGreen id="submit-button" text="Buscar Residente" type="Submit" />
-
-          {Object.keys(persons).length > 0 && <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="create-package ">
-            <form className='container d-flex flex-column py-3' id="form" onSubmit={handleRegister2}>
-              <label htmlFor="rol-selector" className="form-label">Residente asignado al paquete</label>
-              <select required className="form-select" id="rol-selector" value={person.id} onChange={(e) => setPerson(e.target.value)}>
-                <option></option>
-                {persons.map((person) => (
-                  <option value={person.firstName + " " + person.lastName}>
-                    {person.firstName + " " + person.lastName}
-                  </option>
-                ))}
-              </select>
-              <div className="invalid-feedback">
-                Seleccione un residente por favor
-              </div>
-              <div className="form-floating" id="input-form">
-                <input type="text" name="messengerName" className="form-control" id="floatingName" value={packages.messengerName}
-                  onChange={handleOnChange} required></input>
-                <label className="form-label" htmlFor="floatingmessengerName">Nombre mensajero</label>
-              </div>
-              <div className="form-floating" id="input-form">
-                <input type="text" name="typePack" className="form-control" id="floatingTypePack" placeholder="lastname"
-                  value={packages.typePack} onChange={handleOnChange} required></input>
-                <label className="form-label" htmlFor="floatingTypePack">Tipo paquete</label>
-              </div>
-              <div className="form-floating" id="input-form">
-                <textarea id="textarea" type="textarea" name="observation" className="form-control"
-                  value={packages.observation} onChange={handleOnChange} required></textarea>
-                <label className="form-label" htmlFor="textarea">Observaciones</label>
-              </div>
-              <div className="mx-auto my-auto mt-5">
-                <ButtonGreen id="submit-button" text="Guardar Paquete" type="Submit" />
-              </div>
-            </form>
-          </div>}
-        </form >
-
-      </div >
+        </form>
+        {showContentPackage()}
+      </div>
     )
   }
   else {
