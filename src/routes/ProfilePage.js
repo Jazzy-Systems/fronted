@@ -26,7 +26,7 @@ function ProfilePage() {
   const [communiques, setCommuniques] = useState(null);
   const [packages, setPackages] = useState(null);
   const [requests, setRequests] = useState(null);
-  
+
   useEffect(() => {
     if (AuthService.getCurrentUser() === null) {
       //alert("No hay credenciales actuales o usted no ha iniciado sesión.")
@@ -88,9 +88,9 @@ function ProfilePage() {
   },
     [API_URL, navigate
     ])
-  
-    useEffect(() => {
-      if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
+
+  useEffect(() => {
+    if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
       const requestOptions = {
         method: 'GET',
         headers: authHeader()
@@ -105,16 +105,16 @@ function ProfilePage() {
       };
       dataFetch();
     }
-    }, [API_URL]);
+  }, [API_URL]);
 
   const currentRoleNavBar = () => {
     if (!(AuthService.getCurrentUser() == null)) {
       if (AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
-        return <NavBarGeneral itemOne='Comunicados' itemTwo='Paqueteria' itemThree='Mi perfil' itemFour='PQRS' itemFive={AuthService.logout}/>
+        return <NavBarGeneral itemOne='Comunicados' itemTwo='Paqueteria' itemThree='Mi perfil' itemFour='PQRS' itemFive={AuthService.logout} />
       } else if (AuthService.getCurrentUser().role === 'ROLE_GUARD') {
         return <NavBarGeneral itemOne='Comunicados' itemTwo='Paqueteria' itemFive={AuthService.logout} />
       } else if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
-        return <NavBarGeneral itemOne='Comunicados' itemTwo='Gestion Usuarios' itemThree='Mi perfil' itemFour='PQRS' itemFive={AuthService.logout}/>
+        return <NavBarGeneral itemOne='Comunicados' itemTwo='Gestion Usuarios' itemThree='Mi perfil' itemFour='PQRS' itemFive={AuthService.logout} />
       }
     }
 
@@ -134,7 +134,7 @@ function ProfilePage() {
         )
       }
     }
-    else if (location.pathname === "/profile/myPackages" && AuthService.getCurrentUser().role == 'ROLE_RESIDENT') {
+    else if (location.pathname === "/profile/myPackages" && AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
       if (packages) {
         return (
           <div className="profilePage-body">
@@ -154,7 +154,7 @@ function ProfilePage() {
     }
     else if (location.pathname === "/profile/viewRequests" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
       return <Routes>
-        <Route path="viewRequests" element={<ViewPQRS pqrs = {requests}/>} />
+        <Route path="viewRequests" element={<ViewPQRS pqrs={requests} />} />
       </Routes>
     }
     else if (location.pathname === "/profile/createPerson" && AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
@@ -167,22 +167,24 @@ function ProfilePage() {
         <Route path="editarpersona" element={<EditPerson />} />
       </Routes>
     }
-    else if (location.pathname === "/profile/createPackage" && AuthService.getCurrentUser().role == 'ROLE_GUARD') {
+    else if (location.pathname === "/profile/createPackage" && AuthService.getCurrentUser().role === 'ROLE_GUARD') {
       return <Routes>
         <Route path="createPackage" element={<CreatePackage />} />
       </Routes>
     }
-    else if (location.pathname === "/profile/editPackage" && AuthService.getCurrentUser().role == 'ROLE_GUARD') {
+    else if (location.pathname === "/profile/editPackage" && AuthService.getCurrentUser().role === 'ROLE_GUARD') {
       return <Routes>
         <Route path="editPackage" element={<EditPackage />} />
       </Routes>
     }
-    else if (location.pathname === "/profile/editProfile" && AuthService.getCurrentUser().role == 'ROLE_RESIDENT' || AuthService.getCurrentUser().role == 'ROLE_ADMIN') {
+    else if ((location.pathname === "/profile/editProfile") &&
+      (AuthService.getCurrentUser().role === 'ROLE_RESIDENT' ||
+        AuthService.getCurrentUser().role === 'ROLE_ADMIN')) {
       return <Routes>
         <Route path="editProfile" element={<EditMyProfile />} />
       </Routes>
     }
-    else if (location.pathname === "/profile/myallrequests" && AuthService.getCurrentUser().role == 'ROLE_RESIDENT') {
+    else if (location.pathname === "/profile/myallrequests" && AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
       if (requests) {
         return (
           <div className="profilePage-body">
@@ -197,9 +199,9 @@ function ProfilePage() {
         )
       }
     }
-    else if (location.pathname === "/profile/createpqrs" && AuthService.getCurrentUser().role == 'ROLE_RESIDENT') {
+    else if (location.pathname === "/profile/createpqrs" && AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
       return <Routes>
-        <Route path="/createpqrs" element={<CreatePqrs/>} />
+        <Route path="/createpqrs" element={<CreatePqrs />} />
       </Routes>
     }
   }

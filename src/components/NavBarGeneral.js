@@ -4,7 +4,7 @@ import AuthService from "../services/auth.service";
 
 const NavBarGeneral = (props) => {
     const FRONT_URL = process.env.REACT_APP_FRONT_URL;
-    
+
     const communiqueByRol = () => {
         if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
             return <li className="nav-item dropdown" id="navegar">
@@ -24,34 +24,34 @@ const NavBarGeneral = (props) => {
     const PQRSByRol = () => {
         if (AuthService.getCurrentUser().role === 'ROLE_ADMIN') {
             return <li className="nav-item">
-            <a className="nav-link" href={FRONT_URL + "/profile/viewRequests"}>{props.itemFour}</a>
-           </li>
-        } else if(AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
+                <a className="nav-link" href={FRONT_URL + "/profile/viewRequests"}>{props.itemFour}</a>
+            </li>
+        } else if (AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
             return <li className="nav-item dropdown" id="navegar">
-            <a className="nav-link dropdown-toggle" id="dropDownComOne" href="#navegar" data-bs-toggle="dropdown" aria-expanded="false">{props.itemFour}</a>
-            <ul className="dropdown-menu" id="dropDownComTwo" data-bs-popper="static">
-                <li><a className="dropdown-item" href={FRONT_URL + "/profile/createpqrs"}>Crear PQRS</a></li>
-                <li><a className="dropdown-item" href={FRONT_URL + "/profile/myallrequests"} > Ver mis PQRS</a></li>
-            </ul >
-        </li >
+                <a className="nav-link dropdown-toggle" id="dropDownComOne" href="#navegar" data-bs-toggle="dropdown" aria-expanded="false">{props.itemFour}</a>
+                <ul className="dropdown-menu" id="dropDownComTwo" data-bs-popper="static">
+                    <li><a className="dropdown-item" href={FRONT_URL + "/profile/createpqrs"}>Crear PQRS</a></li>
+                    <li><a className="dropdown-item" href={FRONT_URL + "/profile/myallrequests"} > Ver mis PQRS</a></li>
+                </ul >
+            </li >
         }
     }
 
     const navBarRoutes = () => {
         if (props.itemTwo === "Paqueteria") {
-            if(AuthService.getCurrentUser().role == 'ROLE_GUARD'){
+            if (AuthService.getCurrentUser().role === 'ROLE_GUARD') {
                 return <li className="nav-item dropdown" id="navegar">
                     <a className="nav-link dropdown-toggle" id="dropDownComOne" href="#navegar" data-bs-toggle="dropdown" aria-expanded="false">{props.itemTwo}</a>
                     <ul className="dropdown-menu" id="dropDownComTwo" data-bs-popper="static">
                         <li><a className="dropdown-item" href={FRONT_URL + "/profile/createPackage"}>Crear paquete</a></li>
                         <li><a className="dropdown-item" href={FRONT_URL + "/profile/editPackage"} >Editar paquete</a></li>
                     </ul >
-                </li >          
+                </li >
             }
-            if(AuthService.getCurrentUser().role == 'ROLE_RESIDENT'){
+            if (AuthService.getCurrentUser().role === 'ROLE_RESIDENT') {
                 return <li className="nav-item">
-                        <a className="nav-link" href={FRONT_URL + "/profile/myPackages"}>{props.itemTwo}</a>
-                       </li>                
+                    <a className="nav-link" href={FRONT_URL + "/profile/myPackages"}>{props.itemTwo}</a>
+                </li>
             }
         } else if (props.itemTwo === "Gestion Usuarios") {
             return <li className="nav-item dropdown">
