@@ -68,7 +68,7 @@ const EditPerson = (props) => {
     }
 
     return (
-        <div className='contenedor-form-edit'>
+        <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
             <form className='form-find-dni' onSubmit={handleFindByDNI}>
                 <img className="mb-4" src={require('../images/Logo.png')} alt="" width="120" height="120" />
                 <TitleCard text="Editar Persona" />

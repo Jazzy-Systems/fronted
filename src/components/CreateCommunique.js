@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import TitleCard from './TitleCard';
 import ButtonGreen from './ButtonGreen';
-import '../styles/createCommunique.css';
+import '../styles/basic.css';
 import communiqueService from '../services/communique-service';
 
 const CreateCommunique = (props) => {
@@ -31,25 +30,28 @@ const CreateCommunique = (props) => {
     }
 
     return (
-        <div className='contenedor-createCommunique'>
-            <TitleCard text="Crear Comunicado" />
-            <form className='form-Communique' onSubmit={newCommunique}>
-                <div className="form-floating" id="input-form">
-                    <input type="name" name="nombre" className="form-control" id="floatingName" placeholder="name" value={form.title} onChange={handleOnChange} required></input>
-                    <label className="form-label" htmlFor="floatingInput">Titulo</label>
-                </div>
-                <div className="form-floating" id="input-formDescripcion">
-                    <textarea type="text" name="descripcion" className="form-control" id="floatingDescripcion" placeholder="descripcion" value={form.descripcion} onChange={handleOnChange} required></textarea>
-                    <label className="form-label" htmlFor="floatingInput">Descripcion</label>
-                </div>
-                <label htmlFor="selector" className="form-label">Tipo</label>
+        <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
+            <form className='container d-flex flex-column' onSubmit={newCommunique}>
+                <h3 className='mx-auto flex align-center fw-bold' id="title">Publicar Comunicado</h3>
+                <label htmlFor="type-selector" className="form-label">Tipo</label>
                 <select required name="type" className="form-select" id="type-selector" value={form.type} onChange={handleOnChange}>
-                    <option></option>
+                    <option>Seleccione el tipo de comunicado</option>
                     <option>Evento</option>
                     <option>Reparacion</option>
                     <option>Aviso</option>
                 </select>
-                <ButtonGreen id="submit-button" text="Crear" type="Submit" />
+                <div className="form-floating" id="input-form">
+                    <input type="name" name="nombre" className="form-control" id="floatingName" placeholder="name" value={form.title} onChange={handleOnChange} required></input>
+                    <label className="form-label" htmlFor="floatingInput">Titulo</label>
+                </div>
+                <div className="form-floating mb-5" id="input-form">
+                    <textarea id="textarea" type="text" name="descripcion" className="form-control"
+                        placeholder="descripcion" value={form.descripcion} onChange={handleOnChange} required></textarea>
+                    <label className="form-label" htmlFor="floatingInput">Descripcion</label>
+                </div>
+                <div className="mx-auto my-auto mt-4">
+                    <ButtonGreen id="submit-button" text="Crear" type="Submit" />
+                </div>
             </form>
             <div>
                 <span>{resMessage}</span>

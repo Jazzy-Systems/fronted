@@ -60,22 +60,22 @@ const EditMyProfile = (props) => {
 
 
     return (
-        <div className='contenedor-form-edit'>
-             <TitleCard text="Editar Mi perfil" />
+        <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
+            <TitleCard text="Editar Mi perfil" />
             <form className='form-register' onSubmit={handleUpdatePhone}>
                 <div className="form-floating" id="input-form">
                     <input type="text" name="firstName" className="form-control" id="floatingName" value={person.firstName}
-                        required></input>
+                        disabled></input>
                     <label className="form-label" htmlFor="floatingName">Nombres</label>
                 </div>
                 <div className="form-floating" id="input-form">
                     <input type="text" name="lastName" className="form-control" id="floatingLastNames" placeholder="lastname"
-                        value={person.lastName} required></input>
+                        value={person.lastName} disabled></input>
                     <label className="form-label" htmlFor="floatingLastNames">Apellidos</label>
                 </div>
                 <div className="form-floating" id="input-form">
                     <input type="email" name="email" className="form-control" id="floatingEmail" placeholder="name@example.com"
-                        value={person.email} required></input>
+                        value={person.email} disabled></input>
                     <label className="form-label" htmlFor="floatingEmail">Correo</label>
                 </div>
                 <div className="form-floating" id="input-form">
@@ -85,7 +85,7 @@ const EditMyProfile = (props) => {
                 </div>
                 <div className="form-floating" id="input-form">
                     <input type="number" name="dni" className="form-control" id="floatingCedula" placeholder="Password" value={person.dni}
-                        required></input>
+                        disabled></input>
                     <label className="form-label" htmlFor="floatingCedula">Cédula</label>
                 </div>
                 <ButtonGreen id="submit-button" text="Guardar" type="Submit" />
