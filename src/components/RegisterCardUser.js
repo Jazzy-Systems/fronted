@@ -64,8 +64,8 @@ const RegisterUser = (props) => {
     }
     if (roles) {
         return (
-            <div className='contenedor-form-register'>
-                <form className='form-register' onSubmit={handleRegister2}>
+            <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
+                <form className='container d-flex flex-column' id="form" onSubmit={handleRegister2}>
                     <img className="mb-4" src={require('../images/Logo.png')} alt="" width="120" height="120" />
                     <TitleCard text="Registro Usuario" />
                     <div className="form-floating" id="input-form">

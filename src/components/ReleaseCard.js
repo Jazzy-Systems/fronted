@@ -3,7 +3,6 @@ import '../styles/releaseCard.css';
 import aviso from '../images/aviso.svg'
 import evento from '../images/evento.svg'
 import reparacion from '../images/reparacion.svg'
-import ButtonGreen from './ButtonGreen';
 
 function ReleaseCard(props) {
 
@@ -34,11 +33,6 @@ function ReleaseCard(props) {
                     <h3 className="mb-0" >{props.communique.titleCommunique}</h3>
                     <div className="mb-1 text-muted">{props.communique.datePublished}</div>
                     <p className="card-text" id="p-contentCard-text">{props.communique.description}</p>
-                    <div className='more-card'>
-                        <div>
-                            <ButtonGreen id="edit-card" text="Editar" type="button" />
-                        </div>
-                    </div>
 
                 </div>
                 {getIcon()}
