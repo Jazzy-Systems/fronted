@@ -1,8 +1,4 @@
 #card {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
     font-family: 'M PLUS Rounded 1c', sans-serif;
     border: 0.4em solid #03989E;
     border-radius: 2em;
@@ -45,4 +41,9 @@
     color: black;
     font-weight: 600;
     font-size: 18px;
+}
+
+#textarea {
+    height: 7em;
+    resize: none;
 }

@@ -68,7 +68,7 @@ input {
     align-content: stretch;
     justify-content: space-evenly;
     background-color: #8cd4c4;
-    width: 2250px;
+    width: 100vh;
     border-radius: 10px;
 }
 
@@ -92,8 +92,8 @@ input {
 }
 
 #profilePage-body {
-    margin-top: 100px;
-    height: 600px;
+    margin-top: 5rem;
+    height: 100vh;
     font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
@@ -115,12 +115,13 @@ input {
 }
 
 .profilePage-body {
-
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    margin-left: 20px;
-    /* justify-content: space-around; Como debe dejarse? */
+    margin-left: 1em;
+    justify-content: center;
+    align-items: center;
 }
 
 .register-body {
@@ -129,7 +130,6 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* justify-content: space-around; Como debe dejarse? */
 }
 
 #edit-card {
@@ -151,9 +151,4 @@ input {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-#footer {
-    position: relative;
-    bottom: 0;
 }
