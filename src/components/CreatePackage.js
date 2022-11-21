@@ -72,13 +72,13 @@ const CreatePackage = (props) => {
 
   const handleRegister2 = (e) => {
     e.preventDefault();
-    let messengerName = e.target[0].value;
-    let typePack = e.target[1].value;
-    let observation = e.target[2].value;
+    let messengerName = e.target[1].value;
+    let typePack = e.target[2].value;
+    let observation = e.target[3].value;
     let personDTO = {
-      personId: findIdPerson(e.target[3].value),
+      personId: findIdPerson(e.target[0].value),
     }
-    console.log(messengerName + " , " + typePack + " , " + observation + " , " + personDTO.personId)
+    console.log("mess" + messengerName + " , type" + typePack + " , ob" + observation + " , per" + personDTO.personId)
     PackService.save(
       messengerName, typePack, observation, personDTO
     ).then(
@@ -98,27 +98,10 @@ const CreatePackage = (props) => {
     );
   }
 
-  if (apartments) {
-    return (
-      <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
-        <form className='form-find-dni' onSubmit={handleFindByApartment}>
-          <div className="col-md-7">
-            < label htmlFor="selector" className="form-label" > Torre - Apartamento</label >
-            <select required className="form-select" id="rol-selector" value={apartment} onChange={(e) => setApartment(e.target.value)}>
-              <option></option>
-              {apartments.map((apartment) => (
-                <option value={apartment.buildingName + "-" + apartment.apartmentNumber}>
-                  {apartment.buildingName + "-" + apartment.apartmentNumber}
-                </option>
-              ))}
-            </select>
-            <div className="invalid-feedback">
-              Seleccione Torre-Apartamento por favor.
-            </div>
-          </div >
-          <ButtonGreen id="submit-button" text="Buscar Residente" type="Submit" />
+  const showContentPackage = () => {
 
-          {Object.keys(persons).length > 0 && <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="create-package ">
+    if (Object.keys(persons).length > 0) {
+        return <div>
             <form className='container d-flex flex-column py-3' id="form" onSubmit={handleRegister2}>
               <label htmlFor="rol-selector" className="form-label">Residente asignado al paquete</label>
               <select required className="form-select" id="rol-selector" value={person.id} onChange={(e) => setPerson(e.target.value)}>
@@ -151,8 +134,33 @@ const CreatePackage = (props) => {
                 <ButtonGreen id="submit-button" text="Guardar Paquete" type="Submit" />
               </div>
             </form>
-          </div>}
+        </div>
+
+    }
+
+}
+
+  if (apartments) {
+    return (
+      <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="card">
+        <form className='form-find-dni' onSubmit={handleFindByApartment}>
+          <div className="col-md-7">
+            < label htmlFor="selector" className="form-label" > Torre - Apartamento</label >
+            <select required className="form-select" id="rol-selector" value={apartment} onChange={(e) => setApartment(e.target.value)}>
+              <option></option>
+              {apartments.map((apartment) => (
+                <option value={apartment.buildingName + "-" + apartment.apartmentNumber}>
+                  {apartment.buildingName + "-" + apartment.apartmentNumber}
+                </option>
+              ))}
+            </select>
+            <div className="invalid-feedback">
+              Seleccione Torre-Apartamento por favor.
+            </div>
+          </div >
+          <ButtonGreen id="submit-button" text="Buscar Residente" type="Submit" />
         </form >
+        {showContentPackage()}
 
       </div >
     )
