@@ -7,7 +7,7 @@ const Policies = (props) => {
     
     return (
         <div className="container px-5 py-5" id="featured-3">
-            <h1 className="pb-2 border-bottom" id="title-AboutUs">Sobre Nosotros</h1>
+            <h1 className="pb-2 border-bottom" id="title-AboutUs">Politicas y tratamiento de datos</h1>
             <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
                 <div className="feature col" id="item-AboutUs">
                     <div className="feature-icon d-inline-flex align-items-center justify-content-center mb-3">

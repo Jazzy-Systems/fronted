@@ -95,6 +95,11 @@ const RegisterUser = (props) => {
                         </div>
                     </div>
                     <ButtonGreen id="submit-button" text="Registrarme" type="Submit" />
+                    <br></br>
+                    <p id="text-extra">Recuerde que al registrarse, esta aceptando los
+                        <a href={FRONT_URL + "/Policies"}>términos y condiciones.</a>
+                    </p>
+                    <br></br>
                     <p id="text-extra">¿Ya tienes una cuenta?<br></br>
                         <a href={FRONT_URL + "/login"} onClick={props.fLogin}>Iniciar Sesión</a>
                     </p>
