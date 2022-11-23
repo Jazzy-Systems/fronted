@@ -33,7 +33,7 @@ function PQRScard(props) {
             <div className="row g-0 overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" id="cardRelease">
                 <div className="col p-4 d-flex flex-column position-static" id="p-contentCard">
                     <strong className="d-inline-block mb-2 text-dark">Fecha de solicitud: {props.request.dateRequest}</strong>
-                    <h2 className="mb-0" >Tipo paquete: {props.request.typeRequest.typeRequestName}</h2>
+                    <h2 className="mb-0" >Tipo solicitud: {props.request.typeRequest.typeRequestName}</h2>
                     <div className="mb-1 text-muted">Descripción: {props.request.descriptionRequest}</div>
                     <p className="card-text" id="p-contentCard-text">Respuesta: {props.request.responseRequest}</p>
                     <div className='more-card'>
