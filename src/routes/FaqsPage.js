@@ -3,14 +3,14 @@ import '../styles/generalPages.css';
 import FAQS from '../components/FAQS.js';
 import Footer from '../components/Footer.js';
 
-const FaqsPage = (props) =>{
+const FaqsPage = (props) => {
 
   return (
-    <div>      
-      <div className="generalPage-container">
-        <FAQS/>
+    <div className="profilePage-container">
+      <div className="profilePage-body">
+        <FAQS />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

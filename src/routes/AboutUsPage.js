@@ -3,14 +3,14 @@ import '../styles/generalPages.css';
 import AboutUs from '../components/AboutUs';
 import Footer from '../components/Footer.js';
 
-const AboutUsPage = (props) =>{
+const AboutUsPage = (props) => {
 
   return (
-    <div>      
-      <div className="generalPage-container">
-        <AboutUs/>
+    <div className="profilePage-container">
+      <div className="profilePage-body">
+        <AboutUs />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

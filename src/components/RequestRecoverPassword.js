@@ -36,7 +36,7 @@ const RequestRecoverPassword = (props) => {
     }
 
     return (
-        <div className='card container-sm d-flex justify-content-center align-items-center col-auto' id="login">
+        <div className='card col-auto' id="login">
             <form className='container d-flex flex-column' id="form" onSubmit={requestRecoveryPassword} >
                 <h3 className='mx-auto flex align-center fw-bold' id="title">Enviar correo electrónico para recuperar contraseña</h3>
                 <div className="form-floating" id="input-form">

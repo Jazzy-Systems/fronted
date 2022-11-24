@@ -1,15 +1,15 @@
 import React from 'react';
 import '../styles/generalPages.css';
-import RequestRecoverPassword from '../components/RequestRecoverPassword';
+import RecoverPassword from '../components/RecoverPassword';
 import Footer from '../components/Footer.js';
 
 function RecoveredPage() {
   return (
     <div>
       <div className="generalPage-container">
-        <RequestRecoverPassword />
+        <RecoverPassword />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

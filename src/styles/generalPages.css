@@ -1,18 +1,19 @@
 .generalPage-container {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    min-height: 1024px;
-    background: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .profilePage-container {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    min-height: 1024px;
-    background: #FFFFFF;
-    margin-left: 5px;
-  }
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 768px;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profilePage-container {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 768px;
+  background: #FFFFFF;
+  margin-left: 5px;
+}
